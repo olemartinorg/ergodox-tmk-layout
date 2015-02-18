@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd "$(dirname "$0")"
 
 if [[ ! -e "tmk_keyboard" ]]; then
@@ -16,7 +18,7 @@ if [[ ! -e "tmk_keyboard" ]]; then
     patch --quiet keymap.c < ../../../src/keymap.c.diff
     echo " * Patching matrix.c"
     patch --quiet matrix.c < ../../../src/matrix.c.diff
-    cd ../../..
+    cd ../../../
 fi
 
 if [[ ! -e "/usr/lib/libusb.so" && ! -e "/usr/lib/x86_64-linux-gnu/libusb.so" ]]; then
