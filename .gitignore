@@ -1,3 +1,4 @@
 ergodox_*.eep
 ergodox_*.hex
 tmk_keyboard
+teensy_loader_cli
