@@ -5,11 +5,18 @@ cd "$(dirname "$0")"
 if [[ ! -e "tmk_keyboard" ]]; then
     echo " * Cloning TMK keyboard firmware (from cub-uanic)"
     git clone --quiet https://github.com/cub-uanic/tmk_keyboard.git
-fi
 
-if [[ ! -L "tmk_keyboard/keyboard/ergodox/keymap_olemartinorg.h" ]]; then
-    echo " * Adding symbolic link to keyboard mapping"
-    ln -s keymap_olemartinorg.h tmk_keyboard/keyboard/ergodox/keymap_olemartinorg.h
+    echo " * Patching in references to our keymap"
+    echo "olemartinorg: OPT_DEFS += -DKEYMAP_OLEMARTINORG" >> tmk_keyboard/keyboard/ergodox/Makefile.lufa
+    echo "olemartinorg: all" >> tmk_keyboard/keyboard/ergodox/Makefile.lufa
+
+    cd tmk_keyboard/keyboard/ergodox
+    ln -s ../../../src/keymap_olemartinorg.h keymap_olemartinorg.h
+    echo " * Patching keymap.c"
+    patch --quiet keymap.c < ../../../src/keymap.c.diff
+    echo " * Patching matrix.c"
+    patch --quiet matrix.c < ../../../src/matrix.c.diff
+    cd ../../..
 fi
 
 if [[ ! -e "/usr/lib/libusb.so" && ! -e "/usr/lib/x86_64-linux-gnu/libusb.so" ]]; then
@@ -33,13 +40,13 @@ if ! hash avr-gcc 2>/dev/null; then
     exit
 fi
 
-cd tmk_keyboard/keyboard/ergodox
-
 echo " * Cleaning up after last build"
+[[ -f "ergodox_lufa.hex" ]] && rm ergodox_lufa.hex
+cd tmk_keyboard/keyboard/ergodox
 make -f Makefile.lufa clean >/dev/null
 
 echo " * Building"
-make -f Makefile.lufa micro >/dev/null
+make -f Makefile.lufa olemartinorg >/dev/null
 
 cd ../../..
 
