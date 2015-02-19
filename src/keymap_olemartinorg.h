@@ -5,26 +5,48 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          TAB,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
-         FN2,  NO,LALT,NUBS, FN5,
+         FN3, FN4,LALT,NUBS, FN7,
                                       HOME, END,
                                            PGUP,
-                                 FN1, LGUI,PGDN,
+                                 FN2, LGUI,PGDN,
         // right hand
               FN0,6,   7,   8,   9,   0,NUHS,
-               NO,Y,   U,   I,   O,   P,LBRC,
+              FN1,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
-                     FN7, FN6,MINS, EQL,RBRC,
-         FN3,PSCR,
+                     FN9, FN8,MINS, EQL,RBRC,
+         FN5,PSCR,
          INS,
         RALT, ENT, SPC
     ),
 
-    KEYMAP(  // Layer1: F-keys, arrows, media buttons
+    KEYMAP(  // Layer1: Tarmak 1
+        // left hand
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,   J,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,
+                                      TRNS,TRNS,
+                                           TRNS,
+                                 TRNS,TRNS,TRNS,
+        // right hand
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                  TRNS,   N,   E,TRNS,TRNS,TRNS,
+             TRNS,   K,TRNS,TRNS,TRNS,TRNS,TRNS,
+                       TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,
+        TRNS,
+        TRNS,TRNS,TRNS
+    ),
+
+
+    KEYMAP(  // Layer2: F-keys, arrows, media buttons
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS, FN4,MPRV,MPLY,MNXT,TRNS,
+        TRNS, FN6,MPRV,MPLY,MNXT,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
@@ -34,14 +56,14 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              F12,   F6,  F7,  F8,  F9, F10,TRNS,
              TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
-             TRNS,TRNS,MENU,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,MENU,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // Layer2: "numpad" with regular number keys
+    KEYMAP(  // Layer3: "numpad" with regular number keys
         // left hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -56,6 +78,27 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,TRNS,   4,   5,   6,TRNS,TRNS,
                   TRNS,   1,   2,   3,TRNS,TRNS,
              TRNS,TRNS,   0,TRNS,TRNS,TRNS,TRNS,
+                       TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,
+        TRNS,
+        TRNS,TRNS,TRNS
+    ),
+
+    KEYMAP(  // LayerN: fully transparent
+        // left hand
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,
+                                      TRNS,TRNS,
+                                           TRNS,
+                                 TRNS,TRNS,TRNS,
+        // right hand
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,MS_U,TRNS,TRNS,TRNS,
+                  TRNS,MS_L,MS_D,MS_R,TRNS,TRNS,
+             TRNS,TRNS,BTN1,BTN3,BTN2,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,
         TRNS,
@@ -103,15 +146,17 @@ enum function_id {
 static const uint16_t PROGMEM fn_actions[] = {
     [0] =   ACTION_FUNCTION(TEENSY_KEY),                    // FN0  - Teensy key
 
-    [1] =   ACTION_LAYER_TAP_TOGGLE(1),                     // FN1  = Hold to use layer 1, serial taps to toggle
+    [1] =   ACTION_LAYER_TOGGLE(1),                         // FN1  = Tap to toggle on/off colemak/tarmak
     [2] =   ACTION_LAYER_TAP_TOGGLE(2),                     // FN2  = Hold to use layer 2, serial taps to toggle
+    [3] =   ACTION_LAYER_TAP_TOGGLE(3),                     // FN3  = Hold to use layer 3, serial taps to toggle
+    [4] =   ACTION_LAYER_TAP_TOGGLE(4),                     // FN4  = Hold to use layer 4, serial taps to toggle
 
-    [3] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN3  = AltGr + 2 = @
-    [4] =   ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN4  = Shift + , = ;
+    [5] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
+    [6] =   ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN6  = Shift + , = ;
 
-    [5] =   ACTION_FUNCTION(PARENS),                        // FN5  = ( normally, ) on shifted
-    [6] =   ACTION_FUNCTION(BRACKETS),                      // FN6  = [ normally, ] on shifted
-    [7] =   ACTION_FUNCTION(BRACES),                        // FN7  = { normally, } on shifted
+    [7] =   ACTION_FUNCTION(PARENS),                        // FN7  = ( normally, ) on shifted
+    [8] =   ACTION_FUNCTION(BRACKETS),                      // FN8  = [ normally, ] on shifted
+    [9] =   ACTION_FUNCTION(BRACES),                        // FN9  = { normally, } on shifted
 };
 
 
