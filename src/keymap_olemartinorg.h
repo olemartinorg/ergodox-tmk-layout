@@ -131,34 +131,41 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     bool shift_pressed = mods & shift;
     uint8_t weak_mods = 0;
     uint8_t key = 0;
+    uint8_t extra_del_key = 0;
 
     if (id == PARENS && shift_pressed) {
         // If shift is pressed, send the 9 key
         key = KC_9;
+        extra_del_key = KC_8;
         weak_mods = MOD_BIT(KC_RSHIFT);
     } else if (id == PARENS) {
         // If shift is not pressed, send the 8 key along with a shift
         key = KC_8;
+        extra_del_key = KC_9;
         weak_mods = MOD_BIT(KC_RSHIFT);
     }
 
     if (id == BRACKETS && shift_pressed) {
         // If shift is pressed, clear it and send the 9 key with a RALT
         key = KC_9;
+        extra_del_key = KC_8;
         weak_mods = MOD_BIT(KC_RALT);
     } else if (id == BRACKETS) {
         // If shift is not pressed, send the 8 key along with a RALT
         key = KC_8;
+        extra_del_key = KC_9;
         weak_mods = MOD_BIT(KC_RALT);
     }
 
     if (id == BRACES && shift_pressed) {
         // If shift is pressed, clear it and send the 0 key with a RALT
         key = KC_0;
+        extra_del_key = KC_7;
         weak_mods = MOD_BIT(KC_RALT);
     } else if (id == BRACES) {
         // If shift is not pressed, send the 7 key along with a RALT
         key = KC_7;
+        extra_del_key = KC_0;
         weak_mods = MOD_BIT(KC_RALT);
     }
 
@@ -167,6 +174,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         add_weak_mods(weak_mods);
     } else {
         del_key(key);
+        del_key(extra_del_key);
         del_weak_mods(weak_mods);
     }
     if (shift_pressed) {
