@@ -47,7 +47,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS, FN6,MPRV,MPLY,MNXT,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,FN10,FN11,FN12,FN13,FN14,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
@@ -58,7 +58,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,
+        FN15,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
     ),
@@ -79,7 +79,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                   TRNS,   1,   2,   3,TRNS,TRNS,
              TRNS,TRNS,   0,TRNS,TRNS,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,
+        FN16,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
     ),
@@ -140,6 +140,16 @@ enum function_id {
     BRACES
 };
 
+enum macro_id {
+    M_PRIVATE,
+    M_PROTECTED,
+    M_PUBLIC,
+    M_FUNCTION,
+    M_CLOSURE,
+    M_EMAIL_DOMAIN,
+    M_USERNAME,
+};
+
 /*
  * Fn action definition
  */
@@ -157,6 +167,14 @@ static const uint16_t PROGMEM fn_actions[] = {
     [7] =   ACTION_FUNCTION(PARENS),                        // FN7  = ( normally, ) on shifted
     [8] =   ACTION_FUNCTION(BRACKETS),                      // FN8  = [ normally, ] on shifted
     [9] =   ACTION_FUNCTION(BRACES),                        // FN9  = { normally, } on shifted
+
+    [10] =  ACTION_MACRO(M_PRIVATE),                        // FN10 = Type out "private "
+    [11] =  ACTION_MACRO(M_PROTECTED),                      // FN11 = Type out "protected "
+    [12] =  ACTION_MACRO(M_PUBLIC),                         // FN12 = Type out "public "
+    [13] =  ACTION_MACRO(M_FUNCTION),                       // FN13 = Type out "function "
+    [14] =  ACTION_MACRO(M_CLOSURE),                        // FN14 = Type out "function() {}" and then a left arrow
+    [15] =  ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN15 = Type out "@olemartin.org"
+    [16] =  ACTION_MACRO(M_USERNAME),                       // FN16 = Type out "olemartinorg"
 };
 
 
@@ -231,3 +249,33 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     }
 }
 
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+    if (record->event.pressed) {
+        switch (id) {
+            case M_PRIVATE:
+                return MACRO(T(P), T(R), T(I), T(V), T(A), T(T), T(E), T(SPC), END);
+            case M_PROTECTED:
+                return MACRO(T(P), T(R), T(O), T(T), T(E), T(C), T(T), T(E), T(D), T(SPC), END);
+            case M_PUBLIC:
+                return MACRO(T(P), T(U), T(B), T(L), T(I), T(C), T(SPC), END);
+            case M_FUNCTION:
+                return MACRO(T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N), T(SPC), END);
+            case M_CLOSURE:
+                return MACRO(
+                    T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N),
+                    D(LSHIFT), T(8), T(9), U(LSHIFT), T(SPC), D(RALT),
+                    T(7), T(0), U(RALT), T(LEFT), END
+                );
+            case M_EMAIL_DOMAIN:
+                return MACRO(
+                    D(RALT), T(2), U(RALT), T(O), T(L), T(E), T(M), T(A),
+                    T(R), T(T), T(I), T(N), T(DOT), T(O), T(R), T(G), END
+                );
+            case M_USERNAME:
+                return MACRO(
+                    T(O), T(L), T(E), T(M), T(A), T(R), T(T), T(I), T(N), T(O), T(R), T(G), END
+                );
+        }
+    }
+    return MACRO_NONE;
+}
