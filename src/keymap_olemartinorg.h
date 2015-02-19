@@ -1,7 +1,7 @@
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer0: default
         // left hand
-        GRV,    1,   2,   3,FN23,   5, ESC,
+        GRV,    1,   2,   3,FN26,   5, ESC,
          TAB,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
@@ -57,7 +57,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
              TRNS,FN17,FN18,FN19,FN20,FN21,FN22,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
+                       FN23,FN24,FN25,TRNS,TRNS,
         FN15,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
@@ -155,6 +155,9 @@ enum macro_id {
     M_SMILEY4,
     M_SMILEY5,
     M_SMILEY6,
+    M_LOOK_OF_DISAPPROVAL,
+    M_MUSIC,
+    M_SHRUG,
 };
 
 /*
@@ -188,8 +191,11 @@ static const uint16_t PROGMEM fn_actions[] = {
     [20] =  ACTION_MACRO(M_SMILEY4),                        // FN20 = Type out ":-D"
     [21] =  ACTION_MACRO(M_SMILEY5),                        // FN21 = Type out ":-O"
     [22] =  ACTION_MACRO(M_SMILEY6),                        // FN22 = Type out ":-/"
+    [23] =  ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN23 = Type out "ಠ_ಠ"
+    [24] =  ACTION_MACRO(M_MUSIC),                          // FN24 = Type out "♫♪♫"
+    [25] =  ACTION_MACRO(M_SHRUG),                          // FN25 = Type out "¯\_(ツ)_/¯"
 
-    [23] =  ACTION_FUNCTION(FOUR),                          // FN23 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
+    [26] =  ACTION_FUNCTION(FOUR),                          // FN26 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
 };
 
 
@@ -310,6 +316,43 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(O), U(LSHIFT), END);
             case M_SMILEY6:
                 return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(7), U(LSHIFT), END);
+            case M_LOOK_OF_DISAPPROVAL:
+                return MACRO(
+                    D(LCTRL), D(LSHIFT), T(U), T(0), T(C), T(A), T(0), U(LCTRL),
+                    T(SLASH),
+                    D(LCTRL), T(U), T(0), T(C), T(A), T(0), U(LSHIFT), U(LCTRL),
+                    END
+                );
+            case M_MUSIC:
+                return MACRO(
+                    D(LCTRL), D(LSHIFT), T(U), T(2), T(6), T(6), T(B), U(LCTRL),
+                    D(LCTRL), T(U), T(2), T(6), T(6), T(A), U(LCTRL),
+                    D(LCTRL), T(U), T(2), T(6), T(6), T(B), U(LCTRL), U(LSHIFT),
+                    END
+                );
+            case M_SHRUG:
+                return MACRO(
+                    D(LSHIFT),
+                        D(LCTRL),
+                            T(U), T(A), T(F),
+                        U(LCTRL),
+                    U(LSHIFT),
+                    T(EQL),
+                    D(LSHIFT),
+                        T(SLASH),
+                        T(8),
+                        D(LCTRL),
+                            T(U), T(3), T(0), T(C), T(4),
+                        U(LCTRL),
+                        T(9),
+                        T(SLASH),
+                        T(7),
+                        D(LCTRL),
+                            T(U), T(A), T(F),
+                        U(LCTRL),
+                    U(LSHIFT),
+                    END
+                );
         }
     }
     return MACRO_NONE;
