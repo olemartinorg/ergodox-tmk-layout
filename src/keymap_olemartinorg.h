@@ -56,7 +56,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              F12,   F6,  F7,  F8,  F9, F10,TRNS,
              TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,FN17,FN18,FN19,TRNS,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         FN15,TRNS,
         TRNS,
@@ -84,9 +84,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // LayerN: fully transparent
+    KEYMAP(  // Layer4: mouse layer
         // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,ACL0,ACL1,ACL2,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -148,6 +148,9 @@ enum macro_id {
     M_CLOSURE,
     M_EMAIL_DOMAIN,
     M_USERNAME,
+    M_SMILEY1,
+    M_SMILEY2,
+    M_SMILEY3,
 };
 
 /*
@@ -175,6 +178,9 @@ static const uint16_t PROGMEM fn_actions[] = {
     [14] =  ACTION_MACRO(M_CLOSURE),                        // FN14 = Type out "function() {}" and then a left arrow
     [15] =  ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN15 = Type out "@olemartin.org"
     [16] =  ACTION_MACRO(M_USERNAME),                       // FN16 = Type out "olemartinorg"
+    [17] =  ACTION_MACRO(M_SMILEY1),                        // FN17 = Type out ":-)"
+    [18] =  ACTION_MACRO(M_SMILEY2),                        // FN18 = Type out ";-)"
+    [19] =  ACTION_MACRO(M_SMILEY3),                        // FN19 = Type out ":-P"
 };
 
 
@@ -275,6 +281,12 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(
                     T(O), T(L), T(E), T(M), T(A), T(R), T(T), T(I), T(N), T(O), T(R), T(G), END
                 );
+            case M_SMILEY1:
+                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(9), U(LSHIFT), END);
+            case M_SMILEY2:
+                return MACRO(D(LSHIFT), T(COMMA), U(LSHIFT), T(SLASH), D(LSHIFT), T(9), U(LSHIFT), END);
+            case M_SMILEY3:
+                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(P), U(LSHIFT), END);
         }
     }
     return MACRO_NONE;
