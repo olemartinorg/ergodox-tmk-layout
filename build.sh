@@ -18,6 +18,8 @@ if [[ ! -e "tmk_keyboard" ]]; then
     patch --quiet keymap.c < ../../../src/keymap.c.diff
     echo " * Patching matrix.c"
     patch --quiet matrix.c < ../../../src/matrix.c.diff
+    echo " * Patching config.h"
+    patch --quiet config.h < ../../../src/config.h.diff
     cd ../../../
 fi
 

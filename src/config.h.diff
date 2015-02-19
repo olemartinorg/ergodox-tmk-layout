@@ -1,0 +1,21 @@
+--- config.h-orig	2015-02-19 00:24:01.749692166 +0100
++++ config.h	2015-02-19 00:25:11.997693840 +0100
+@@ -29,7 +29,7 @@
+ #define VENDOR_ID       0xFEED
+ #define PRODUCT_ID      0x1307
+ #define DEVICE_VER      0x0001
+-#define MANUFACTURER    TMK/Cub
++#define MANUFACTURER    olemartinorg
+ #define PRODUCT         Ergodox
+ #define DESCRIPTION     t.m.k. keyboard firmware for Ergodox
+ 
+@@ -58,6 +58,9 @@
+ #define DEBOUNCE        2
+ #define TAPPING_TERM    230
+ 
++// Tap twice to loggle a layer on or off
++#define TAPPING_TOGGLE  2
++
+ /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
+ #define LOCKING_SUPPORT_ENABLE
+ /* Locking resynchronize hack */
