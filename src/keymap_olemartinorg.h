@@ -1,7 +1,7 @@
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer0: default
         // left hand
-        GRV,    1,   2,   3,   4,   5, ESC,
+        GRV,    1,   2,   3,FN23,   5, ESC,
          TAB,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
@@ -56,7 +56,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              F12,   F6,  F7,  F8,  F9, F10,TRNS,
              TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
-             TRNS,FN17,FN18,FN19,TRNS,TRNS,TRNS,
+             TRNS,FN17,FN18,FN19,FN20,FN21,FN22,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         FN15,TRNS,
         TRNS,
@@ -137,7 +137,8 @@ enum function_id {
     TEENSY_KEY,
     PARENS,
     BRACKETS,
-    BRACES
+    BRACES,
+    FOUR,
 };
 
 enum macro_id {
@@ -151,6 +152,9 @@ enum macro_id {
     M_SMILEY1,
     M_SMILEY2,
     M_SMILEY3,
+    M_SMILEY4,
+    M_SMILEY5,
+    M_SMILEY6,
 };
 
 /*
@@ -181,6 +185,11 @@ static const uint16_t PROGMEM fn_actions[] = {
     [17] =  ACTION_MACRO(M_SMILEY1),                        // FN17 = Type out ":-)"
     [18] =  ACTION_MACRO(M_SMILEY2),                        // FN18 = Type out ";-)"
     [19] =  ACTION_MACRO(M_SMILEY3),                        // FN19 = Type out ":-P"
+    [20] =  ACTION_MACRO(M_SMILEY4),                        // FN20 = Type out ":-D"
+    [21] =  ACTION_MACRO(M_SMILEY5),                        // FN21 = Type out ":-O"
+    [22] =  ACTION_MACRO(M_SMILEY6),                        // FN22 = Type out ":-/"
+
+    [23] =  ACTION_FUNCTION(FOUR),                          // FN23 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
 };
 
 
@@ -238,6 +247,14 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         weak_mods = MOD_BIT(KC_RALT);
     }
 
+    if (id == FOUR && shift_pressed) {
+        // If shift is pressed, clear it and send the RALT modifier instead
+        key = KC_4;
+        weak_mods = MOD_BIT(KC_RALT);
+    } else if (id == FOUR) {
+        key = KC_4;
+    }
+
     if (record->event.pressed) {
         add_key(key);
         add_weak_mods(weak_mods);
@@ -287,6 +304,12 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(D(LSHIFT), T(COMMA), U(LSHIFT), T(SLASH), D(LSHIFT), T(9), U(LSHIFT), END);
             case M_SMILEY3:
                 return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(P), U(LSHIFT), END);
+            case M_SMILEY4:
+                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(D), U(LSHIFT), END);
+            case M_SMILEY5:
+                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(O), U(LSHIFT), END);
+            case M_SMILEY6:
+                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(7), U(LSHIFT), END);
         }
     }
     return MACRO_NONE;
