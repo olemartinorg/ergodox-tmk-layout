@@ -11,7 +11,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  FN2, LGUI,PGDN,
         // right hand
               FN1,6,   7,   8,   9,   0,NUHS,
-               NO,Y,   U,   I,   O,   P,LBRC,
+              TAB,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
                      FN9, FN8,MINS, EQL,RBRC,
@@ -54,9 +54,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  TRNS,TRNS,TRNS,
         // right hand
              F12,   F6,  F7,  F8,  F9, F10,TRNS,
-             TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
+             FN30,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
-             TRNS,FN17,FN18,FN19,FN20,FN21,FN22,
+             FN29,FN17,FN18,FN19,FN20,FN21,FN22,
                        FN23,FN24,FN25,TRNS,TRNS,
         FN15,TRNS,
         TRNS,
@@ -160,6 +160,8 @@ enum macro_id {
     M_SHRUG,
     M_FAT_ARROW,
     M_ARRAY,
+    M_NEXT_TAB,
+    M_PREV_TAB,
 };
 
 /*
@@ -201,6 +203,8 @@ static const uint16_t PROGMEM fn_actions[] = {
 
     [27] =  ACTION_MACRO(M_FAT_ARROW),                      // FN27 = Type out "=>"
     [28] =  ACTION_MACRO(M_ARRAY),                          // FN28 = Type out "array()" and then left arrow
+    [29] =  ACTION_MACRO(M_NEXT_TAB),                       // FN29 = Next tab (Ctrl+Tab)
+    [30] =  ACTION_MACRO(M_PREV_TAB),                       // FN30 = Next tab (Ctrl+Shift+Tab)
 };
 
 
@@ -221,6 +225,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     uint8_t weak_mods = 0;
     uint8_t key = 0;
     uint8_t extra_del_key = 0;
+    uint8_t extra_del_weak_mod = 0;
 
     if (id == PARENS && shift_pressed) {
         // If shift is pressed, send the 9 key
@@ -264,6 +269,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         weak_mods = MOD_BIT(KC_RALT);
     } else if (id == FOUR) {
         key = KC_4;
+        extra_del_weak_mod = MOD_BIT(KC_RALT);
     }
 
     if (record->event.pressed) {
@@ -273,6 +279,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         del_key(key);
         del_key(extra_del_key);
         del_weak_mods(weak_mods);
+        del_weak_mods(extra_del_weak_mod);
     }
     if (shift_pressed) {
         del_mods(shift);
@@ -362,6 +369,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(D(LSHIFT), T(0), T(NUBS), U(LSHIFT), END);
             case M_ARRAY:
                 return MACRO(T(A), T(R), T(R), T(A), T(Y), D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
+            case M_NEXT_TAB:
+                return MACRO(D(LCTRL), T(TAB), U(LCTRL), END);
+            case M_PREV_TAB:
+                return MACRO(D(LCTRL), D(LSHIFT), T(TAB), U(LSHIFT), U(LCTRL), END);
         }
     }
     return MACRO_NONE;
