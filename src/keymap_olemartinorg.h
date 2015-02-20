@@ -10,8 +10,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            PGUP,
                                  FN2, LGUI,PGDN,
         // right hand
-              FN0,6,   7,   8,   9,   0,NUHS,
-              FN1,Y,   U,   I,   O,   P,LBRC,
+              FN1,6,   7,   8,   9,   0,NUHS,
+               NO,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
                      FN9, FN8,MINS, EQL,RBRC,
@@ -45,8 +45,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer2: F-keys, arrows, media buttons
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS, FN6,MPRV,MPLY,MNXT,TRNS,
+        TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
+        TRNS, FN6,FN27,FN28,TRNS,TRNS,
         TRNS,FN10,FN11,FN12,FN13,FN14,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
@@ -158,6 +158,8 @@ enum macro_id {
     M_LOOK_OF_DISAPPROVAL,
     M_MUSIC,
     M_SHRUG,
+    M_FAT_ARROW,
+    M_ARRAY,
 };
 
 /*
@@ -196,6 +198,9 @@ static const uint16_t PROGMEM fn_actions[] = {
     [25] =  ACTION_MACRO(M_SHRUG),                          // FN25 = Type out "¯\_(ツ)_/¯"
 
     [26] =  ACTION_FUNCTION(FOUR),                          // FN26 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
+
+    [27] =  ACTION_MACRO(M_FAT_ARROW),                      // FN27 = Type out "=>"
+    [28] =  ACTION_MACRO(M_ARRAY),                          // FN28 = Type out "array()" and then left arrow
 };
 
 
@@ -353,6 +358,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                     U(LSHIFT),
                     END
                 );
+            case M_FAT_ARROW:
+                return MACRO(D(LSHIFT), T(0), T(NUBS), U(LSHIFT), END);
+            case M_ARRAY:
+                return MACRO(T(A), T(R), T(R), T(A), T(Y), D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
         }
     }
     return MACRO_NONE;

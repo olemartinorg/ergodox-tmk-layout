@@ -14,7 +14,7 @@
  #define TAPPING_TERM    230
  
 +// Tap twice to loggle a layer on or off
-+#define TAPPING_TOGGLE  2
++#define TAPPING_TOGGLE  3
 +
  /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
  #define LOCKING_SUPPORT_ENABLE
