@@ -39,6 +39,17 @@ if [[ ! -e "teensy_loader_cli" ]]; then
     cd ..
 fi
 
+if [[ ! -e "hid_listen" ]]; then
+    echo " * Downloading Teensy Debugger"
+    wget --quiet https://www.pjrc.com/teensy/hid_listen_1.01.zip
+    unzip hid_listen_1.01.zip >/dev/null
+    rm hid_listen_1.01.zip
+    cd hid_listen
+    echo " * Building Teensy Debugger"
+    make >/dev/null
+    cd ..
+fi
+
 if ! hash avr-gcc 2>/dev/null; then
     echo "Error: You do not have avr-gcc installed. Run sudo apt-get install gcc-avr binutils-avr avr-libc"
     exit
@@ -62,6 +73,8 @@ if [[ -f "tmk_keyboard/keyboard/ergodox/ergodox_lufa.hex" ]]; then
     teensy_loader_cli/teensy_loader_cli -mmcu=atmega32u4 -w ergodox_lufa.hex
 
     echo " * All done! Now test out your new layout!"
+    echo " * Connecting debugger"
+    sudo hid_listen/hid_listen
 
 else
 
