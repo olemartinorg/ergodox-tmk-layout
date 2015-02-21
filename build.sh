@@ -73,7 +73,7 @@ if [[ -f "tmk_keyboard/keyboard/ergodox/ergodox_lufa.hex" ]]; then
     teensy_loader_cli/teensy_loader_cli -mmcu=atmega32u4 -w ergodox_lufa.hex
 
     echo " * All done! Now test out your new layout!"
-    echo " * Connecting debugger"
+    echo " * Connecting debugger (press the D-button while booting the keyboard to enable debugging)"
     sudo hid_listen/hid_listen
 
 else
