@@ -20,7 +20,23 @@ if [[ ! -e "tmk_keyboard" ]]; then
     patch --quiet matrix.c < ../../../src/matrix.c.diff
     echo " * Patching config.h"
     patch --quiet config.h < ../../../src/config.h.diff
-    cd ../../../
+
+    cd ../../
+    echo " * [Recorder] Patching common.mk"
+    patch --quiet common.mk < ../src/recorder/common.mk.diff
+    cd common
+    echo " * [Recorder] Patching action.c"
+    patch --quiet action.c < ../../src/recorder/action.c.diff
+    echo " * [Recorder] Patching action_code.h"
+    patch --quiet action_code.h < ../../src/recorder/action_code.h.diff
+    echo " * [Recorder] Patching action_util.h"
+    patch --quiet action_util.c < ../../src/recorder/action_util.c.diff
+    echo " * [Recorder] Linking recorder.h"
+    ln -s ../../src/recorder/recorder.h recorder.h
+    echo " * [Recorder] Linking recorder.c"
+    ln -s ../../src/recorder/recorder.c recorder.c
+
+    cd ../../
 fi
 
 if [[ ! -e "/usr/lib/libusb.so" && ! -e "/usr/lib/x86_64-linux-gnu/libusb.so" ]]; then

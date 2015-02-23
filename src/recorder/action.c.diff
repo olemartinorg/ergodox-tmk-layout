@@ -1,0 +1,26 @@
+diff --git a/common/action.c b/common/action.c
+index ec8eeae..522be69 100644
+--- a/common/action.c
++++ b/common/action.c
+@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #include "action_macro.h"
+ #include "action_util.h"
+ #include "action.h"
++#include "recorder.h"
+ 
+ #ifdef DEBUG_ACTION
+ #include "debug.h"
+@@ -325,6 +326,13 @@ void process_action(keyrecord_t *record)
+             break;
+ #endif
+         case ACT_COMMAND:
++            if(event.pressed && action.func.id == CMD_RECORDER_TOGGLE) {
++                recorder_toggle(action.func.opt);
++            } else if(event.pressed && action.func.id == CMD_RECORDER_PLAY) {
++                recorder_play(action.func.opt);
++            } else if(event.pressed && action.func.id == CMD_RECORDER_CLEAR) {
++                recorder_clear(action.func.opt);
++            }
+             break;
+ #ifndef NO_ACTION_FUNCTION
+         case ACT_FUNCTION:

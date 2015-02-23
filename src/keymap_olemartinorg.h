@@ -63,10 +63,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // Layer3: "numpad" with regular number keys
+    KEYMAP(  // Layer3: "numpad" with regular number keys + recording
         // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS, FN1, FN2, FN3, FN4, FN5,TRNS,
+        TRNS, FN6, FN7, FN8, FN9,FN10,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -217,6 +217,18 @@ static const uint16_t PROGMEM fn_actions_2[] = {
 
 static const uint16_t PROGMEM fn_actions_3[] = {
     [0] =  ACTION_MACRO(M_USERNAME),                        // FN0  = Type out "olemartinorg"
+
+    [1] =  ACTION_RECORD_TOGGLE(0),                         // FN1  = Toggle recording on slot 0
+    [2] =  ACTION_RECORD_TOGGLE(1),                         // FN2  = Toggle recording on slot 1
+    [3] =  ACTION_RECORD_TOGGLE(2),                         // FN3  = Toggle recording on slot 2
+    [4] =  ACTION_RECORD_TOGGLE(3),                         // FN4  = Toggle recording on slot 3
+    [5] =  ACTION_RECORD_TOGGLE(4),                         // FN5  = Toggle recording on slot 4
+
+    [6] =  ACTION_RECORD_PLAY(0),                           // FN6  = Play recording on slot 0
+    [7] =  ACTION_RECORD_PLAY(1),                           // FN7  = Play recording on slot 1
+    [8] =  ACTION_RECORD_PLAY(2),                           // FN8  = Play recording on slot 2
+    [9] =  ACTION_RECORD_PLAY(3),                           // FN9  = Play recording on slot 3
+    [10] = ACTION_RECORD_PLAY(4),                           // FN10 = Play recording on slot 4
 };
 
 

@@ -1,0 +1,94 @@
+diff --git a/common/action_util.c b/common/action_util.c
+index dbee630..651370e 100644
+--- a/common/action_util.c
++++ b/common/action_util.c
+@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #include "debug.h"
+ #include "action_util.h"
+ #include "timer.h"
++#include "recorder.h"
+ 
+ static inline void add_key_byte(uint8_t code);
+ static inline void del_key_byte(uint8_t code);
+@@ -69,12 +70,15 @@ void send_keyboard_report(void) {
+         }
+     }
+ #endif
++    recorder_send();
+     host_keyboard_send(keyboard_report);
++
+ }
+ 
+ /* key */
+ void add_key(uint8_t key)
+ {
++    recorder_add(E_ADD_KEY, key);
+ #ifdef NKRO_ENABLE
+     if (keyboard_nkro) {
+         add_key_bit(key);
+@@ -86,6 +90,7 @@ void add_key(uint8_t key)
+ 
+ void del_key(uint8_t key)
+ {
++    recorder_add(E_DEL_KEY, key);
+ #ifdef NKRO_ENABLE
+     if (keyboard_nkro) {
+         del_key_bit(key);
+@@ -97,6 +102,7 @@ void del_key(uint8_t key)
+ 
+ void clear_keys(void)
+ {
++    recorder_add(E_CLEAR_KEYS, 0);
+     // not clear mods
+     for (int8_t i = 1; i < KEYBOARD_REPORT_SIZE; i++) {
+         keyboard_report->raw[i] = 0;
+@@ -106,17 +112,41 @@ void clear_keys(void)
+ 
+ /* modifier */
+ uint8_t get_mods(void) { return real_mods; }
+-void add_mods(uint8_t mods) { real_mods |= mods; }
+-void del_mods(uint8_t mods) { real_mods &= ~mods; }
+-void set_mods(uint8_t mods) { real_mods = mods; }
+-void clear_mods(void) { real_mods = 0; }
++void add_mods(uint8_t mods) {
++    recorder_add(E_ADD_MOD, mods);
++    real_mods |= mods;
++}
++void del_mods(uint8_t mods) {
++    recorder_add(E_DEL_MOD, mods);
++    real_mods &= ~mods;
++}
++void set_mods(uint8_t mods) {
++    recorder_add(E_SET_MODS, mods);
++    real_mods = mods;
++}
++void clear_mods(void) {
++    recorder_add(E_CLEAR_MODS, 0);
++    real_mods = 0;
++}
+ 
+ /* weak modifier */
+ uint8_t get_weak_mods(void) { return weak_mods; }
+-void add_weak_mods(uint8_t mods) { weak_mods |= mods; }
+-void del_weak_mods(uint8_t mods) { weak_mods &= ~mods; }
+-void set_weak_mods(uint8_t mods) { weak_mods = mods; }
+-void clear_weak_mods(void) { weak_mods = 0; }
++void add_weak_mods(uint8_t mods) {
++    recorder_add(E_ADD_MOD, mods);
++    weak_mods |= mods;
++}
++void del_weak_mods(uint8_t mods) {
++    recorder_add(E_DEL_MOD, mods);
++    weak_mods &= ~mods;
++}
++void set_weak_mods(uint8_t mods) {
++    recorder_add(E_SET_MODS, mods);
++    weak_mods = mods;
++}
++void clear_weak_mods(void) {
++    recorder_add(E_CLEAR_MODS, 0);
++    weak_mods = 0;
++}
+ 
+ /* Oneshot modifier */
+ #ifndef NO_ACTION_ONESHOT
