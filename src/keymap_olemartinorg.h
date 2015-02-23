@@ -145,7 +145,7 @@ enum macro_id {
     M_PRIVATE,
     M_PROTECTED,
     M_PUBLIC,
-    M_FUNCTION,
+    M_STATIC,
     M_CLOSURE,
     M_EMAIL_DOMAIN,
     M_USERNAME,
@@ -192,7 +192,7 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [1] =   ACTION_MACRO(M_PRIVATE),                        // FN1  = Type out "private "
     [2] =   ACTION_MACRO(M_PROTECTED),                      // FN2  = Type out "protected "
     [3] =   ACTION_MACRO(M_PUBLIC),                         // FN3  = Type out "public "
-    [4] =   ACTION_MACRO(M_FUNCTION),                       // FN4  = Type out "function "
+    [4] =   ACTION_MACRO(M_STATIC),                         // FN4  = Type out "static "
     [5] =   ACTION_MACRO(M_CLOSURE),                        // FN5  = Type out "function() {}" and then a left arrow
 
     [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
@@ -311,8 +311,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(T(P), T(R), T(O), T(T), T(E), T(C), T(T), T(E), T(D), T(SPC), END);
             case M_PUBLIC:
                 return MACRO(T(P), T(U), T(B), T(L), T(I), T(C), T(SPC), END);
-            case M_FUNCTION:
-                return MACRO(T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N), T(SPC), END);
+            case M_STATIC:
+                return MACRO(T(S), T(T), T(A), T(T), T(I), T(C), T(SPC), END);
             case M_CLOSURE:
                 return MACRO(
                     T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N),
