@@ -46,7 +46,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
         TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
-        TRNS, FN0,FN20,FN16,FN21,FN17,
+        TRNS, FN0,FN18,FN16,FN19,FN17,
         TRNS, FN1, FN2, FN3, FN4, FN5,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
@@ -54,9 +54,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  TRNS,TRNS,TRNS,
         // right hand
              F12,   F6,  F7,  F8,  F9, F10,TRNS,
-             FN19,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
+             TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
-             FN18, FN7, FN8, FN9,FN10,FN11,FN12,
+             TRNS, FN7, FN8, FN9,FN10,FN11,FN12,
                        FN13,FN14,FN15,TRNS,TRNS,
          FN6,TRNS,
         TRNS,
@@ -162,8 +162,6 @@ enum macro_id {
     M_FAT_ARROW,
     M_THIS_ARROW,
     M_ARRAY,
-    M_NEXT_TAB,
-    M_PREV_TAB,
 };
 
 /*
@@ -211,12 +209,8 @@ static const uint16_t PROGMEM fn_actions_2[] = {
 
     [16] =  ACTION_MACRO(M_FAT_ARROW),                      // FN16 = Type out "=>"
     [17] =  ACTION_MACRO(M_ARRAY),                          // FN17 = Type out "array()" and then left arrow
-
-    [18] =  ACTION_MACRO(M_NEXT_TAB),                       // FN18 = Next tab (Ctrl+Tab)
-    [19] =  ACTION_MACRO(M_PREV_TAB),                       // FN19 = Next tab (Ctrl+Shift+Tab)
-
-    [20] =  ACTION_MACRO(M_ARROW),                          // FN20 = Type out "->"
-    [21] =  ACTION_MACRO(M_THIS_ARROW),                     // FN21 = Type out "$this->"
+    [18] =  ACTION_MACRO(M_ARROW),                          // FN18 = Type out "->"
+    [19] =  ACTION_MACRO(M_THIS_ARROW),                     // FN19 = Type out "$this->"
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
@@ -395,10 +389,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 );
             case M_ARRAY:
                 return MACRO(T(A), T(R), T(R), T(A), T(Y), D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
-            case M_NEXT_TAB:
-                return MACRO(D(LCTRL), T(TAB), U(LCTRL), END);
-            case M_PREV_TAB:
-                return MACRO(D(LCTRL), D(LSHIFT), T(TAB), U(LSHIFT), U(LCTRL), END);
         }
     }
     return MACRO_NONE;
