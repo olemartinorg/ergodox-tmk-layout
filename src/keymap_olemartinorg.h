@@ -46,8 +46,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
         TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
-        TRNS, FN0,FN18,FN16,FN19,FN17,
-        TRNS, FN1, FN2, FN3, FN4, FN5,TRNS,
+        TRNS, FN0,FN18,FN16,FN19,FN20,
+        TRNS, FN1, FN2, FN3, FN4, FN5,FN17,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
@@ -162,6 +162,7 @@ enum macro_id {
     M_FAT_ARROW,
     M_THIS_ARROW,
     M_ARRAY,
+    M_SELF,
 };
 
 /*
@@ -211,6 +212,7 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [17] =  ACTION_MACRO(M_ARRAY),                          // FN17 = Type out "array()" and then left arrow
     [18] =  ACTION_MACRO(M_ARROW),                          // FN18 = Type out "->"
     [19] =  ACTION_MACRO(M_THIS_ARROW),                     // FN19 = Type out "$this->"
+    [20] =  ACTION_MACRO(M_SELF),                           // FN19 = Type out "self::"
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
@@ -389,6 +391,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 );
             case M_ARRAY:
                 return MACRO(T(A), T(R), T(R), T(A), T(Y), D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
+            case M_SELF:
+                return MACRO(T(S), T(E), T(L), T(F), D(LSHIFT), T(DOT),  T(DOT), U(LSHIFT), END);
         }
     }
     return MACRO_NONE;
