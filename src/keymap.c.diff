@@ -1,6 +1,6 @@
---- keymap.c-orig	2015-02-18 22:50:30.877558467 +0100
-+++ keymap.c	2015-02-18 22:52:42.553561605 +0100
-@@ -85,6 +85,8 @@
+--- a/keyboard/ergodox/keymap.c
++++ b/keyboard/ergodox/keymap.c
+@@ -85,6 +85,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  #include "keymap_micro.h"
  #elif defined(KEYMAP_CUB)
  #include "keymap_cub.h"
@@ -9,3 +9,15 @@
  #else
  
  static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+@@ -218,9 +220,9 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
+     }
+ }
+ 
+-#if defined(KEYMAP_CUB)
++#if defined(KEYMAP_CUB) || defined(KEYMAP_OLEMARTINORG)
+ 
+-// function keymap_fn_to_action will be defined in keymap_cub.h
++// function keymap_fn_to_action will be defined in keymap_cub.h or keymap_olemartinorg.h
+ 
+ #else
+ /* translates Fn keycode to action */

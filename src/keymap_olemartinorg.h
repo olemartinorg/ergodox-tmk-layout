@@ -1,21 +1,21 @@
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer0: default
         // left hand
-        GRV,    1,   2,   3,FN26,   5, ESC,
+        GRV,    1,   2,   3,FN27,   5, ESC,
         LALT,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
-         FN3, FN4,  NO,NUBS, FN7,
+        FN30,FN31,  NO,NUBS,FN24,
                                       HOME, END,
                                            PGUP,
-                                 FN2, LGUI,PGDN,
+                                FN29, LGUI,PGDN,
         // right hand
-              FN1,6,   7,   8,   9,   0,NUHS,
+             FN28,6,   7,   8,   9,   0,NUHS,
               TAB,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
-                     FN9, FN8,MINS, EQL,RBRC,
-         FN5,PSCR,
+                    FN26,FN25,MINS, EQL,RBRC,
+         FN1,PSCR,
          INS,
         RALT, ENT, SPC
     ),
@@ -46,19 +46,19 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
         TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
-        TRNS, FN6,FN27,FN28,TRNS,TRNS,
-        TRNS,FN10,FN11,FN12,FN13,FN14,TRNS,
+        TRNS, FN0,FN18,FN16,FN19,FN20,
+        TRNS, FN1, FN2, FN3, FN4, FN5,FN17,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
                                  TRNS,TRNS,TRNS,
         // right hand
              F12,   F6,  F7,  F8,  F9, F10,TRNS,
-             FN30,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
+             TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
-             FN29,FN17,FN18,FN19,FN20,FN21,FN22,
-                       FN23,FN24,FN25,TRNS,TRNS,
-        FN15,TRNS,
+             TRNS, FN7, FN8, FN9,FN10,FN11,FN12,
+                       FN13,FN14,FN15,TRNS,TRNS,
+         FN6,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
     ),
@@ -79,7 +79,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                   TRNS,   1,   2,   3,TRNS,TRNS,
              TRNS,TRNS,   0,TRNS,TRNS,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
-        FN16,TRNS,
+         FN0,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
     ),
@@ -145,7 +145,7 @@ enum macro_id {
     M_PRIVATE,
     M_PROTECTED,
     M_PUBLIC,
-    M_FUNCTION,
+    M_STATIC,
     M_CLOSURE,
     M_EMAIL_DOMAIN,
     M_USERNAME,
@@ -158,53 +158,65 @@ enum macro_id {
     M_LOOK_OF_DISAPPROVAL,
     M_MUSIC,
     M_SHRUG,
+    M_ARROW,
     M_FAT_ARROW,
+    M_THIS_ARROW,
     M_ARRAY,
-    M_NEXT_TAB,
-    M_PREV_TAB,
+    M_SELF,
 };
 
 /*
  * Fn action definition
  */
 static const uint16_t PROGMEM fn_actions[] = {
+    // Beginning on 0: Actions that are only needed on layer 0
     [0] =   ACTION_FUNCTION(TEENSY_KEY),                    // FN0  - Teensy key
 
-    [1] =   ACTION_LAYER_TOGGLE(1),                         // FN1  = Tap to toggle on/off colemak/tarmak
-    [2] =   ACTION_LAYER_TAP_TOGGLE(2),                     // FN2  = Hold to use layer 2, serial taps to toggle
-    [3] =   ACTION_LAYER_TAP_TOGGLE(3),                     // FN3  = Hold to use layer 3, serial taps to toggle
-    [4] =   ACTION_LAYER_TAP_TOGGLE(4),                     // FN4  = Hold to use layer 4, serial taps to toggle
+    [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
-    [5] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
-    [6] =   ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN6  = Shift + , = ;
+    // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
+    [24] =  ACTION_FUNCTION(PARENS),                        // FN24 = ( normally, ) on shifted
+    [25] =  ACTION_FUNCTION(BRACKETS),                      // FN25 = [ normally, ] on shifted
+    [26] =  ACTION_FUNCTION(BRACES),                        // FN26  = { normally, } on shifted
+    [27] =  ACTION_FUNCTION(FOUR),                          // FN27 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
 
-    [7] =   ACTION_FUNCTION(PARENS),                        // FN7  = ( normally, ) on shifted
-    [8] =   ACTION_FUNCTION(BRACKETS),                      // FN8  = [ normally, ] on shifted
-    [9] =   ACTION_FUNCTION(BRACES),                        // FN9  = { normally, } on shifted
+    [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
+    [29] =  ACTION_LAYER_TAP_TOGGLE(2),                     // FN29 = Hold to use layer 2, serial taps to toggle
+    [30] =  ACTION_LAYER_TAP_TOGGLE(3),                     // FN30 = Hold to use layer 3, serial taps to toggle
+    [31] =  ACTION_LAYER_TAP_TOGGLE(4),                     // FN31 = Hold to use layer 4, serial taps to toggle
+};
 
-    [10] =  ACTION_MACRO(M_PRIVATE),                        // FN10 = Type out "private "
-    [11] =  ACTION_MACRO(M_PROTECTED),                      // FN11 = Type out "protected "
-    [12] =  ACTION_MACRO(M_PUBLIC),                         // FN12 = Type out "public "
-    [13] =  ACTION_MACRO(M_FUNCTION),                       // FN13 = Type out "function "
-    [14] =  ACTION_MACRO(M_CLOSURE),                        // FN14 = Type out "function() {}" and then a left arrow
-    [15] =  ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN15 = Type out "@olemartin.org"
-    [16] =  ACTION_MACRO(M_USERNAME),                       // FN16 = Type out "olemartinorg"
-    [17] =  ACTION_MACRO(M_SMILEY1),                        // FN17 = Type out ":-)"
-    [18] =  ACTION_MACRO(M_SMILEY2),                        // FN18 = Type out ";-)"
-    [19] =  ACTION_MACRO(M_SMILEY3),                        // FN19 = Type out ":-P"
-    [20] =  ACTION_MACRO(M_SMILEY4),                        // FN20 = Type out ":-D"
-    [21] =  ACTION_MACRO(M_SMILEY5),                        // FN21 = Type out ":-O"
-    [22] =  ACTION_MACRO(M_SMILEY6),                        // FN22 = Type out ":-/"
-    [23] =  ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN23 = Type out "ಠ_ಠ"
-    [24] =  ACTION_MACRO(M_MUSIC),                          // FN24 = Type out "♫♪♫"
-    [25] =  ACTION_MACRO(M_SHRUG),                          // FN25 = Type out "¯\_(ツ)_/¯"
+static const uint16_t PROGMEM fn_actions_2[] = {
+    [0] =   ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN0  = Shift + , = ;
 
-    [26] =  ACTION_FUNCTION(FOUR),                          // FN26 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
+    [1] =   ACTION_MACRO(M_PRIVATE),                        // FN1  = Type out "private "
+    [2] =   ACTION_MACRO(M_PROTECTED),                      // FN2  = Type out "protected "
+    [3] =   ACTION_MACRO(M_PUBLIC),                         // FN3  = Type out "public "
+    [4] =   ACTION_MACRO(M_STATIC),                         // FN4  = Type out "static "
+    [5] =   ACTION_MACRO(M_CLOSURE),                        // FN5  = Type out "function() {}" and then a left arrow
 
-    [27] =  ACTION_MACRO(M_FAT_ARROW),                      // FN27 = Type out "=>"
-    [28] =  ACTION_MACRO(M_ARRAY),                          // FN28 = Type out "array()" and then left arrow
-    [29] =  ACTION_MACRO(M_NEXT_TAB),                       // FN29 = Next tab (Ctrl+Tab)
-    [30] =  ACTION_MACRO(M_PREV_TAB),                       // FN30 = Next tab (Ctrl+Shift+Tab)
+    [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
+
+    [7] =   ACTION_MACRO(M_SMILEY1),                        // FN7  = Type out ":-)"
+    [8] =   ACTION_MACRO(M_SMILEY2),                        // FN8  = Type out ";-)"
+    [9] =   ACTION_MACRO(M_SMILEY3),                        // FN9  = Type out ":-P"
+    [10] =  ACTION_MACRO(M_SMILEY4),                        // FN10 = Type out ":-D"
+    [11] =  ACTION_MACRO(M_SMILEY5),                        // FN11 = Type out ":-O"
+    [12] =  ACTION_MACRO(M_SMILEY6),                        // FN12 = Type out ":-/"
+
+    [13] =  ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN13 = Type out "ಠ_ಠ"
+    [14] =  ACTION_MACRO(M_MUSIC),                          // FN14 = Type out "♫♪♫"
+    [15] =  ACTION_MACRO(M_SHRUG),                          // FN15 = Type out "¯\_(ツ)_/¯"
+
+    [16] =  ACTION_MACRO(M_FAT_ARROW),                      // FN16 = Type out "=>"
+    [17] =  ACTION_MACRO(M_ARRAY),                          // FN17 = Type out "array()" and then left arrow
+    [18] =  ACTION_MACRO(M_ARROW),                          // FN18 = Type out "->"
+    [19] =  ACTION_MACRO(M_THIS_ARROW),                     // FN19 = Type out "$this->"
+    [20] =  ACTION_MACRO(M_SELF),                           // FN19 = Type out "self::"
+};
+
+static const uint16_t PROGMEM fn_actions_3[] = {
+    [0] =  ACTION_MACRO(M_USERNAME),                        // FN0  = Type out "olemartinorg"
 };
 
 
@@ -299,8 +311,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(T(P), T(R), T(O), T(T), T(E), T(C), T(T), T(E), T(D), T(SPC), END);
             case M_PUBLIC:
                 return MACRO(T(P), T(U), T(B), T(L), T(I), T(C), T(SPC), END);
-            case M_FUNCTION:
-                return MACRO(T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N), T(SPC), END);
+            case M_STATIC:
+                return MACRO(T(S), T(T), T(A), T(T), T(I), T(C), T(SPC), END);
             case M_CLOSURE:
                 return MACRO(
                     T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N),
@@ -365,15 +377,53 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                     U(LSHIFT),
                     END
                 );
+            case M_ARROW:
+                return MACRO(T(SLSH), D(LSHIFT), T(NUBS), U(LSHIFT), END);
             case M_FAT_ARROW:
                 return MACRO(D(LSHIFT), T(0), T(NUBS), U(LSHIFT), END);
+            case M_THIS_ARROW:
+                return MACRO(
+                    D(RALT), T(4), U(RALT),
+                    T(T), T(H), T(I), T(S),
+                    T(SLSH),
+                    D(LSHIFT), T(NUBS), U(LSHIFT),
+                    END
+                );
             case M_ARRAY:
                 return MACRO(T(A), T(R), T(R), T(A), T(Y), D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
-            case M_NEXT_TAB:
-                return MACRO(D(LCTRL), T(TAB), U(LCTRL), END);
-            case M_PREV_TAB:
-                return MACRO(D(LCTRL), D(LSHIFT), T(TAB), U(LSHIFT), U(LCTRL), END);
+            case M_SELF:
+                return MACRO(T(S), T(E), T(L), T(F), D(LSHIFT), T(DOT),  T(DOT), U(LSHIFT), END);
         }
     }
     return MACRO_NONE;
+}
+
+#define FN_ACTIONS_SIZE (sizeof(fn_actions) / sizeof(fn_actions[0]))
+#define FN_ACTIONS_2_SIZE (sizeof(fn_actions_2) / sizeof(fn_actions_2[0]))
+#define FN_ACTIONS_3_SIZE (sizeof(fn_actions_3) / sizeof(fn_actions_3[0]))
+
+/*
+* translates Fn keycode to action
+* for some layers, use different translation table
+*/
+action_t keymap_fn_to_action(uint8_t keycode)
+{
+    uint8_t layer = biton32(layer_state);
+    action_t action;
+    action.code = ACTION_NO;
+
+    if (layer == 3 && FN_INDEX(keycode) < FN_ACTIONS_3_SIZE) {
+        action.code = pgm_read_word(&fn_actions_3[FN_INDEX(keycode)]);
+    }
+    if (layer == 2 && FN_INDEX(keycode) < FN_ACTIONS_2_SIZE) {
+        action.code = pgm_read_word(&fn_actions_2[FN_INDEX(keycode)]);
+    }
+
+    // by default, use fn_actions from default layer 0
+    // this is needed to get mapping for same key, that was used switch to some layer,
+    // to have possibility to switch layers back
+    if (action.code == ACTION_NO && FN_INDEX(keycode) < FN_ACTIONS_SIZE) {
+        action.code = pgm_read_word(&fn_actions[FN_INDEX(keycode)]);
+    }
+    return action;
 }
