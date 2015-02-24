@@ -135,9 +135,6 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* id for user defined functions & macros */
 enum function_id {
     TEENSY_KEY,
-    PARENS,
-    BRACKETS,
-    BRACES,
     FOUR,
 };
 
@@ -163,6 +160,9 @@ enum macro_id {
     M_THIS_ARROW,
     M_ARRAY,
     M_SELF,
+    M_PARENS,
+    M_BRACKETS,
+    M_BRACES,
 };
 
 /*
@@ -175,9 +175,9 @@ static const uint16_t PROGMEM fn_actions[] = {
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
-    [24] =  ACTION_FUNCTION(PARENS),                        // FN24 = ( normally, ) on shifted
-    [25] =  ACTION_FUNCTION(BRACKETS),                      // FN25 = [ normally, ] on shifted
-    [26] =  ACTION_FUNCTION(BRACES),                        // FN26  = { normally, } on shifted
+    [24] =  ACTION_MACRO(M_PARENS),                         // FN24 = Prints out () and left arrow
+    [25] =  ACTION_MACRO(M_BRACKETS),                       // FN25 = Prints out [] and left arrow
+    [26] =  ACTION_MACRO(M_BRACES),                         // FN26 = Prints out {} and left arrow
     [27] =  ACTION_FUNCTION(FOUR),                          // FN27 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
 
     [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
@@ -212,7 +212,7 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [17] =  ACTION_MACRO(M_ARRAY),                          // FN17 = Type out "array()" and then left arrow
     [18] =  ACTION_MACRO(M_ARROW),                          // FN18 = Type out "->"
     [19] =  ACTION_MACRO(M_THIS_ARROW),                     // FN19 = Type out "$this->"
-    [20] =  ACTION_MACRO(M_SELF),                           // FN19 = Type out "self::"
+    [20] =  ACTION_MACRO(M_SELF),                           // FN20 = Type out "self::"
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
@@ -246,68 +246,19 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         return;
     }
 
-    uint8_t mods = get_mods();
     uint8_t shift = MOD_BIT(KC_LSHIFT);
-    bool shift_pressed = mods & shift;
-    uint8_t weak_mods = 0;
-    uint8_t key = 0;
-    uint8_t extra_del_key = 0;
-    uint8_t extra_del_weak_mod = 0;
+    bool shift_pressed = get_mods() & shift;
 
-    if (id == PARENS && shift_pressed) {
-        // If shift is pressed, send the 9 key
-        key = KC_9;
-        extra_del_key = KC_8;
-        weak_mods = MOD_BIT(KC_RSHIFT);
-    } else if (id == PARENS) {
-        // If shift is not pressed, send the 8 key along with a shift
-        key = KC_8;
-        extra_del_key = KC_9;
-        weak_mods = MOD_BIT(KC_RSHIFT);
+    if (record->event.pressed && shift_pressed) {
+        add_key(KC_4);
+        add_weak_mods(MOD_BIT(KC_RALT));
+    } else if(record->event.pressed && !shift_pressed) {
+        add_key(KC_4);
+    } else if (!record->event.pressed) {
+        del_key(KC_4);
+        del_weak_mods(MOD_BIT(KC_RALT));
     }
 
-    if (id == BRACKETS && shift_pressed) {
-        // If shift is pressed, clear it and send the 9 key with a RALT
-        key = KC_9;
-        extra_del_key = KC_8;
-        weak_mods = MOD_BIT(KC_RALT);
-    } else if (id == BRACKETS) {
-        // If shift is not pressed, send the 8 key along with a RALT
-        key = KC_8;
-        extra_del_key = KC_9;
-        weak_mods = MOD_BIT(KC_RALT);
-    }
-
-    if (id == BRACES && shift_pressed) {
-        // If shift is pressed, clear it and send the 0 key with a RALT
-        key = KC_0;
-        extra_del_key = KC_7;
-        weak_mods = MOD_BIT(KC_RALT);
-    } else if (id == BRACES) {
-        // If shift is not pressed, send the 7 key along with a RALT
-        key = KC_7;
-        extra_del_key = KC_0;
-        weak_mods = MOD_BIT(KC_RALT);
-    }
-
-    if (id == FOUR && shift_pressed) {
-        // If shift is pressed, clear it and send the RALT modifier instead
-        key = KC_4;
-        weak_mods = MOD_BIT(KC_RALT);
-    } else if (id == FOUR) {
-        key = KC_4;
-        extra_del_weak_mod = MOD_BIT(KC_RALT);
-    }
-
-    if (record->event.pressed) {
-        add_key(key);
-        add_weak_mods(weak_mods);
-    } else {
-        del_key(key);
-        del_key(extra_del_key);
-        del_weak_mods(weak_mods);
-        del_weak_mods(extra_del_weak_mod);
-    }
     if (shift_pressed) {
         del_mods(shift);
     }
@@ -402,6 +353,13 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(T(A), T(R), T(R), T(A), T(Y), D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
             case M_SELF:
                 return MACRO(T(S), T(E), T(L), T(F), D(LSHIFT), T(DOT),  T(DOT), U(LSHIFT), END);
+            case M_PARENS:
+                return MACRO(D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
+            case M_BRACKETS:
+                return MACRO(D(RALT), T(8), T(9), U(RALT), T(LEFT), END);
+            case M_BRACES:
+                return MACRO(D(RALT), T(7), T(0), U(RALT), T(LEFT), END);
+
         }
     }
     return MACRO_NONE;
