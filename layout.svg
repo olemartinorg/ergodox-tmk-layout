@@ -37,9 +37,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="521.2857"
-     inkscape:cy="329.18845"
+     inkscape:zoom="8.0000002"
+     inkscape:cx="199.54704"
+     inkscape:cy="458.99499"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,9 +48,9 @@
      fit-margin-right="10"
      fit-margin-bottom="10"
      inkscape:window-width="1440"
-     inkscape:window-height="1677"
+     inkscape:window-height="1245"
      inkscape:window-x="0"
-     inkscape:window-y="883"
+     inkscape:window-y="1315"
      inkscape:window-maximized="0"
      units="mm"
      inkscape:snap-global="true">
@@ -1552,8 +1552,8 @@
          id="flowPara4364" /><flowPara
          id="flowPara4366"
          style="fill:#aa0000"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan4483">P3</flowSpan> Next</flowPara></flowRoot>    <flowRoot
+           style="fill:#00aa00"
+           id="flowSpan4483">P3</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4267"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1665,7 +1665,7 @@
          id="flowPara4349">F</flowPara><flowPara
          id="flowPara4351" /><flowPara
          id="flowPara4353"
-         style="fill:#aa0000">  $this-&gt;</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000">     $this</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3697"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1899,7 +1899,9 @@
          id="flowPara3819">{          }</flowPara><flowPara
          id="flowPara3821" /><flowPara
          id="flowPara3823"
-         style="fill:#aa0000">     ಠ_ಠ</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3566">0</flowSpan>   ಠ_ಠ</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3888"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -2010,8 +2012,8 @@
          id="flowPara4340" /><flowPara
          id="flowPara4342"
          style="fill:#aa0000"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan4487">P1</flowSpan> Prev</flowPara></flowRoot>    <flowRoot
+           style="fill:#00aa00"
+           id="flowSpan4487">P1</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4352"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -2027,7 +2029,7 @@
          id="flowPara4362"
          style="fill:#aa0000"><flowSpan
    style="fill:#00aa00"
-   id="flowSpan4485">P2</flowSpan> Play</flowPara></flowRoot>    <text
+   id="flowSpan4485">P2     </flowSpan>▶</flowPara></flowRoot>    <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
        x="997.8894"
@@ -2075,5 +2077,15 @@
          id="flowPara4473">R</flowPara><flowPara
          id="flowPara4475" /><flowPara
          id="flowPara4477"
-         style="fill:#00aa00">P4</flowPara></flowRoot>  </g>
+         style="fill:#00aa00">P4</flowPara></flowRoot>    <polygon
+       points="0,210.265 80.531,210.265 80.531,128.673 221.239,210.265 221.239,131.133 357.451,210.265 357.451,0 222.124,78.466 222.124,0 79.646,81.77 79.646,0 0,0 "
+       id="polygon3"
+       transform="matrix(0.03990205,0,0,0.03990205,448.24765,356.17922)"
+       style="fill:#aa0000" />
+    <polygon
+       points="222.124,0 79.646,81.77 79.646,0 0,0 0,210.265 80.531,210.265 80.531,128.673 221.239,210.265 221.239,131.133 357.451,210.265 357.451,0 222.124,78.466 "
+       id="polygon3-2"
+       transform="matrix(-0.03990205,0,0,0.03990205,566.16717,346.36671)"
+       style="fill:#aa0000;display:inline" />
+  </g>
 </svg>

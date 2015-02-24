@@ -78,7 +78,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,TRNS,   4,   5,   6,TRNS,TRNS,
                   TRNS,   1,   2,   3,TRNS,TRNS,
              TRNS,TRNS,   0,TRNS,TRNS,TRNS,TRNS,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
+                          0,TRNS,TRNS,TRNS,TRNS,
          FN0,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
@@ -394,13 +394,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
             case M_FAT_ARROW:
                 return MACRO(D(LSHIFT), T(0), T(NUBS), U(LSHIFT), END);
             case M_THIS_ARROW:
-                return MACRO(
-                    D(RALT), T(4), U(RALT),
-                    T(T), T(H), T(I), T(S),
-                    T(SLSH),
-                    D(LSHIFT), T(NUBS), U(LSHIFT),
-                    END
-                );
+                return MACRO(D(RALT), T(4), U(RALT), T(T), T(H), T(I), T(S), END);
             case M_ARRAY:
                 return MACRO(T(A), T(R), T(R), T(A), T(Y), D(LSHIFT), T(8), T(9), U(LSHIFT), T(LEFT), END);
             case M_SELF:
