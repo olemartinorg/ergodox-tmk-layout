@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef enum {
     E_ADD_KEY    = 0b000,
@@ -30,6 +31,8 @@ typedef enum {
 
 void recorder_add(recorded_event_t event, uint8_t code);
 void recorder_send(void);
+bool recorder_is_recording(void);
+bool recorder_is_playing(void);
 void recorder_toggle(uint8_t slot);
 void recorder_start(uint8_t slot);
 void recorder_stop(uint8_t slot);

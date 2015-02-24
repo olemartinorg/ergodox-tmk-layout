@@ -107,6 +107,16 @@ static void recorder_set_slot(uint8_t new_slot)
     r_idx = 0;
 }
 
+bool recorder_is_recording(void)
+{
+    return is_recording;
+}
+
+bool recorder_is_playing(void)
+{
+    return is_playing;
+}
+
 void recorder_start(uint8_t slot)
 {
     recorder_set_slot(slot);
