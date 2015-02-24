@@ -1,8 +1,8 @@
 diff --git a/common/action_code.h b/common/action_code.h
-index bc40e2c..2d4673c 100644
+index bc40e2c..7127293 100644
 --- a/common/action_code.h
 +++ b/common/action_code.h
-@@ -302,8 +302,20 @@ enum backlight_opt {
+@@ -302,8 +302,28 @@ enum backlight_opt {
  #define ACTION_BACKLIGHT_TOGGLE()       ACTION(ACT_BACKLIGHT, BACKLIGHT_TOGGLE << 8)
  #define ACTION_BACKLIGHT_STEP()         ACTION(ACT_BACKLIGHT, BACKLIGHT_STEP << 8)
  #define ACTION_BACKLIGHT_LEVEL(level)   ACTION(ACT_BACKLIGHT, BACKLIGHT_LEVEL << 8 | level)
@@ -10,16 +10,24 @@ index bc40e2c..2d4673c 100644
  /* Command */
 -#define ACTION_COMMAND(id, opt)         ACTION(ACT_COMMAND,  (opt)<<8 | (addr))
 +enum commands {
-+    CMD_RECORDER_TOGGLE = 0,
-+    CMD_RECORDER_START  = 1,
-+    CMD_RECORDER_STOP   = 2,
-+    CMD_RECORDER_PLAY   = 3,
-+    CMD_RECORDER_CLEAR  = 4,
++    CMD_RECORDER_TOGGLE        = 0,
++    CMD_RECORDER_START         = 1,
++    CMD_RECORDER_STOP          = 2,
++    CMD_RECORDER_PLAY          = 3,
++    CMD_RECORDER_CLEAR         = 4,
++    CMD_RECORDER_SET_INTERVAL  = 5,
++    CMD_RECORDER_INCR_INTERVAL = 6,
++    CMD_RECORDER_DECR_INTERVAL = 7,
 +};
-+#define ACTION_COMMAND(id, opt)         ACTION(ACT_COMMAND,  (opt)<<8 | (id))
-+#define ACTION_RECORD_TOGGLE(slot)      ACTION_COMMAND(CMD_RECORDER_TOGGLE, slot)
-+#define ACTION_RECORD_PLAY(slot)        ACTION_COMMAND(CMD_RECORDER_PLAY, slot)
-+#define ACTION_RECORD_CLEAR(slot)       ACTION_COMMAND(CMD_RECORDER_CLEAR, slot)
++#define ACTION_COMMAND(id, opt)                 ACTION(ACT_COMMAND,  (opt)<<8 | (id))
++#define ACTION_RECORD_TOGGLE(slot)              ACTION_COMMAND(CMD_RECORDER_TOGGLE, slot)
++#define ACTION_RECORD_START(slot)               ACTION_COMMAND(CMD_RECORDER_START, slot)
++#define ACTION_RECORD_STOP(slot)                ACTION_COMMAND(CMD_RECORDER_STOP, slot)
++#define ACTION_RECORD_PLAY(slot)                ACTION_COMMAND(CMD_RECORDER_PLAY, slot)
++#define ACTION_RECORD_CLEAR(slot)               ACTION_COMMAND(CMD_RECORDER_CLEAR, slot)
++#define ACTION_RECORD_SET_INTERVAL(interval)    ACTION_COMMAND(CMD_RECORDER_SET_INTERVAL, interval)
++#define ACTION_RECORD_INCR_INTERVAL(interval)   ACTION_COMMAND(CMD_RECORDER_INCR_INTERVAL, interval)
++#define ACTION_RECORD_DECR_INTERVAL(interval)   ACTION_COMMAND(CMD_RECORDER_DECR_INTERVAL, interval)
 +
  /* Function */
  enum function_opts {

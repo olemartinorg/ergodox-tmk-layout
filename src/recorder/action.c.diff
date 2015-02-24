@@ -1,5 +1,5 @@
 diff --git a/common/action.c b/common/action.c
-index ec8eeae..522be69 100644
+index ec8eeae..32bfa50 100644
 --- a/common/action.c
 +++ b/common/action.c
 @@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -10,16 +10,37 @@ index ec8eeae..522be69 100644
  
  #ifdef DEBUG_ACTION
  #include "debug.h"
-@@ -325,6 +326,13 @@ void process_action(keyrecord_t *record)
+@@ -325,6 +326,34 @@ void process_action(keyrecord_t *record)
              break;
  #endif
          case ACT_COMMAND:
-+            if(event.pressed && action.func.id == CMD_RECORDER_TOGGLE) {
-+                recorder_toggle(action.func.opt);
-+            } else if(event.pressed && action.func.id == CMD_RECORDER_PLAY) {
-+                recorder_play(action.func.opt);
-+            } else if(event.pressed && action.func.id == CMD_RECORDER_CLEAR) {
-+                recorder_clear(action.func.opt);
++            if(event.pressed) {
++                switch (action.func.id) {
++                    case CMD_RECORDER_TOGGLE:
++                        recorder_toggle(action.func.opt);
++                        break;
++                    case CMD_RECORDER_START:
++                        recorder_start(action.func.opt);
++                        break;
++                    case CMD_RECORDER_STOP:
++                        recorder_stop(action.func.opt);
++                        break;
++                    case CMD_RECORDER_SET_INTERVAL:
++                        recorder_set_interval(action.func.opt);
++                        break;
++                    case CMD_RECORDER_INCR_INTERVAL:
++                        recorder_incr_interval(action.func.opt);
++                        break;
++                    case CMD_RECORDER_DECR_INTERVAL:
++                        recorder_decr_interval(action.func.opt);
++                        break;
++                    case CMD_RECORDER_PLAY:
++                        recorder_play(action.func.opt);
++                        break;
++                    case CMD_RECORDER_CLEAR:
++                        recorder_clear(action.func.opt);
++                        break;
++                }
 +            }
              break;
  #ifndef NO_ACTION_FUNCTION

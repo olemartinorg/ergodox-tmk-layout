@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "action.h"
 #include "action_util.h"
 #include "debug.h"
+#include "wait.h"
 #include <stdbool.h>
 
 #define NUM_SLOTS 5
@@ -37,6 +38,7 @@ static bool is_playing = false;
 static uint8_t r_slot = 0;
 static uint16_t r_idx = 0;
 static uint16_t r_idx_max[NUM_SLOTS];
+static uint8_t r_interval = 0;
 static record_t r_arr[NUM_SLOTS][NUM_RECORDS];
 
 void recorder_add(recorded_event_t event, uint8_t code)
@@ -149,6 +151,36 @@ void recorder_clear(uint8_t slot)
     r_idx_max[r_slot] = 0;
 }
 
+void recorder_set_interval(uint8_t interval)
+{
+    interval *= 16;
+    r_interval = interval;
+    dprintf("Recorder: Setting interval to %u\n", interval);
+}
+
+void recorder_incr_interval(uint8_t interval)
+{
+    interval *= 16;
+    uint8_t remaining = UINT8_MAX - r_interval;
+    if(interval > remaining) {
+        interval = remaining;
+    }
+
+    r_interval += interval;
+    dprintf("Recorder: Increasing interval to %u\n", r_interval);
+}
+
+void recorder_decr_interval(uint8_t interval)
+{
+    interval *= 16;
+    if(interval > r_interval) {
+        interval = r_interval;
+    }
+
+    r_interval -= interval;
+    dprintf("Recorder: Decreasing interval to %u\n", r_interval);
+}
+
 void recorder_play(uint8_t slot)
 {
     if (is_playing)
@@ -195,6 +227,9 @@ void recorder_play(uint8_t slot)
         if(r_arr[r_slot][i].send) {
             dprintf(" + send");
             send_keyboard_report();
+            if(r_interval) {
+                { uint8_t ms = r_interval; while (ms--) wait_ms(1); }
+            }
         }
         dprintf("\n");
     }

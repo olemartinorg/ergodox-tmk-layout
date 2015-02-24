@@ -37,4 +37,7 @@ void recorder_toggle(uint8_t slot);
 void recorder_start(uint8_t slot);
 void recorder_stop(uint8_t slot);
 void recorder_clear(uint8_t slot);
+void recorder_set_interval(uint8_t interval);
+void recorder_incr_interval(uint8_t interval);
+void recorder_decr_interval(uint8_t interval);
 void recorder_play(uint8_t slot);

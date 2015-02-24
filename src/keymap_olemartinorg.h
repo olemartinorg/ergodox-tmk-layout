@@ -68,7 +68,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS, FN1, FN2, FN3, FN4, FN5,TRNS,
         TRNS, FN6, FN7, FN8, FN9,FN10,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,FN11,FN12,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
@@ -229,6 +229,9 @@ static const uint16_t PROGMEM fn_actions_3[] = {
     [8] =  ACTION_RECORD_PLAY(2),                           // FN8  = Play recording on slot 2
     [9] =  ACTION_RECORD_PLAY(3),                           // FN9  = Play recording on slot 3
     [10] = ACTION_RECORD_PLAY(4),                           // FN10 = Play recording on slot 4
+
+    [11] = ACTION_RECORD_SET_INTERVAL(0),                   // FN11 = Set playback interval to 0ms
+    [12] = ACTION_RECORD_SET_INTERVAL(3),                   // FN12 = Set playback interval to 16*3ms
 };
 
 
