@@ -37,9 +37,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="8.0000002"
-     inkscape:cx="199.54704"
-     inkscape:cy="458.99499"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="657.33572"
+     inkscape:cy="454.2644"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,9 +48,9 @@
      fit-margin-right="10"
      fit-margin-bottom="10"
      inkscape:window-width="1440"
-     inkscape:window-height="1245"
+     inkscape:window-height="1247"
      inkscape:window-x="0"
-     inkscape:window-y="1315"
+     inkscape:window-y="1313"
      inkscape:window-maximized="0"
      units="mm"
      inkscape:snap-global="true">
@@ -868,7 +868,7 @@
            style="fill:#00aa00"
            id="flowSpan3875">4</flowSpan><flowSpan
            style="fill:#aa0000"
-           id="flowSpan3863">   VolD</flowSpan></flowPara></flowRoot>    <flowRoot
+           id="flowSpan3863" /></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3469"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -909,7 +909,7 @@
            style="fill:#00aa00"
            id="flowSpan3879">6</flowSpan><flowSpan
            style="fill:#aa0000"
-           id="flowSpan3853">   VolU</flowSpan></flowPara></flowRoot>    <flowRoot
+           id="flowSpan3853" /></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3507"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -2086,6 +2086,17 @@
        points="222.124,0 79.646,81.77 79.646,0 0,0 0,210.265 80.531,210.265 80.531,128.673 221.239,210.265 221.239,131.133 357.451,210.265 357.451,0 222.124,78.466 "
        id="polygon3-2"
        transform="matrix(-0.03990205,0,0,0.03990205,566.16717,346.36671)"
+       style="fill:#aa0000;display:inline" />
+    <path
+       inkscape:connector-curvature="0"
+       d="m 1063.1479,356.91755 0,-3.84675 2.1742,0 3.2823,-2.676 0,9.17785 -3.2823,-2.6551 z m 6.021,-0.3554 c 0.446,-0.446 0.669,-0.9826 0.669,-1.60979 0,-0.62719 -0.223,-1.17075 -0.669,-1.63068 l 0.6481,-0.68991 c 0.6411,0.64113 0.9687,1.42163 0.9826,2.3415 0,0.892 -0.3275,1.65159 -0.9826,2.27878 z"
+       id="path4"
+       style="fill:#aa0000"
+       sodipodi:nodetypes="ccccccccsccccc" />
+    <path
+       inkscape:connector-curvature="0"
+       d="m 1168.1836,357.12054 0,-3.84675 2.1742,0 3.2823,-2.676 0,9.17785 -3.2823,-2.6551 -2.1742,0 z m 6.021,-0.3554 q 0.669,-0.669 0.669,-1.60979 0,-0.94078 -0.669,-1.63068 l 0.6481,-0.68991 q 0.9617,0.96169 0.9826,2.3415 0,1.338 -0.9826,2.27878 z m 1.0871,1.12894 q 1.129,-1.12894 1.129,-2.73873 0,-1.60978 -1.129,-2.75962 l 0.7109,-0.669 q 1.4007,1.42162 1.4007,3.41817 0,1.99654 -1.4007,3.43908 z m 1.0662,1.04531 q 1.568,-1.56797 1.568,-3.78404 0,-2.21606 -1.568,-3.78403 l 0.6691,-0.6899 q 0.878,0.87806 1.3693,2.0279 0.4913,1.14985 0.4913,2.43559 0,1.28574 -0.4913,2.44603 -0.4913,1.16029 -1.3693,2.03837 z"
+       id="path4-6"
        style="fill:#aa0000;display:inline" />
   </g>
 </svg>
