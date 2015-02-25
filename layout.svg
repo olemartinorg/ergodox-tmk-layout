@@ -37,9 +37,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000001"
-     inkscape:cx="657.33572"
-     inkscape:cy="454.2644"
+     inkscape:zoom="2.8284273"
+     inkscape:cx="399.39158"
+     inkscape:cy="397.95146"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1126,7 +1126,7 @@
            height="43.341122"
            x="784.22894"
            y="390.47299" /></flowRegion><flowPara
-         id="flowPara3659">[           ]</flowPara><flowPara
+         id="flowPara3659">[ ]</flowPara><flowPara
          id="flowPara3833" /><flowPara
          id="flowPara3835"
          style="fill:#aa0000">     ♫♪♫</flowPara></flowRoot>    <flowRoot
@@ -1385,7 +1385,7 @@
            height="42.523365"
            x="275.58411"
            y="395.73001" /></flowRegion><flowPara
-         id="flowPara4032">(          )</flowPara></flowRoot>    <flowRoot
+         id="flowPara4032">( )</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4058"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1567,7 +1567,9 @@
          id="flowPara4273">Z</flowPara><flowPara
          id="flowPara3851" /><flowPara
          id="flowPara3853"
-         style="fill:#aa0000">       M1</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3569">D0</flowSpan>   M1</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4275"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1581,7 +1583,9 @@
          id="flowPara4281">X</flowPara><flowPara
          id="flowPara3855" /><flowPara
          id="flowPara3857"
-         style="fill:#aa0000">       M2</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3567">D3</flowSpan>   M2</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4283"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1896,7 +1900,7 @@
            height="50.5"
            x="733"
            y="394.59448" /></flowRegion><flowPara
-         id="flowPara3819">{          }</flowPara><flowPara
+         id="flowPara3819">{ }</flowPara><flowPara
          id="flowPara3821" /><flowPara
          id="flowPara3823"
          style="fill:#aa0000"><flowSpan
@@ -1919,11 +1923,11 @@
        xml:space="preserve"
        id="flowRoot3910"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
-       transform="translate(321.03566,121.59222)"><flowRegion
+       transform="translate(307.60063,90.479523)"><flowRegion
          id="flowRegion3912"><rect
            id="rect3914"
-           width="130.25"
-           height="165.25"
+           width="147.22057"
+           height="187.87741"
            x="449.5"
            y="195.59448" /></flowRegion><flowPara
          id="flowPara3916">M1 = &quot;private &quot;</flowPara><flowPara
@@ -1935,7 +1939,9 @@
          id="flowPara3936">M7 = &quot;olemartinorg&quot;</flowPara><flowPara
          id="flowPara4499" /><flowPara
          id="flowPara4501">R1-R5 = Record</flowPara><flowPara
-         id="flowPara4503">P1-P5 = Play recording</flowPara></flowRoot>    <text
+         id="flowPara4503">P1-P5 = Play recording</flowPara><flowPara
+         id="flowPara3572">D0 = 0ms playback delay</flowPara><flowPara
+         id="flowPara3574">D3 = 48ms playback delay</flowPara></flowRoot>    <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
        x="315.55066"
