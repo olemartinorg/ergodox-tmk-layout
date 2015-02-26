@@ -111,7 +111,9 @@ static void recorder_set_slot(uint8_t new_slot)
 
 bool recorder_is_recording(void)
 {
-    return is_recording;
+    if(is_recording && r_idx < NUM_RECORDS)
+        return true;
+    return false;
 }
 
 bool recorder_is_playing(void)
