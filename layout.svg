@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="layout.svg"
+   sodipodi:docname="layout.pdf"
    inkscape:export-filename="/home/olemh/dev/ergodox-tmk-layout/layout.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284273"
-     inkscape:cx="399.39158"
+     inkscape:cx="718.17663"
      inkscape:cy="397.95146"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -70,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -792,9 +792,7 @@
          id="flowPara3373">7         /</flowPara><flowPara
          id="flowPara3425" /><flowPara
          id="flowPara3427"
-         style="fill:#aa0000"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan3873">7</flowSpan>      F7</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000">        F7</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3375"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -808,9 +806,7 @@
          id="flowPara3381">8         (</flowPara><flowPara
          id="flowPara3429" /><flowPara
          id="flowPara3431"
-         style="fill:#aa0000"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan3871">8</flowSpan>      F8</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000">        F8</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3383"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -824,9 +820,7 @@
          id="flowPara3389">9         )</flowPara><flowPara
          id="flowPara3433" /><flowPara
          id="flowPara3435"
-         style="fill:#aa0000"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan3867">9</flowSpan>      F9</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000">        F9</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3391"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -864,11 +858,8 @@
            y="239.53841" /></flowRegion><flowPara
          id="flowPara3463">U</flowPara><flowPara
          id="flowPara3465" /><flowPara
-         id="flowPara3467"><flowSpan
-           style="fill:#00aa00"
-           id="flowSpan3875">4</flowSpan><flowSpan
-           style="fill:#aa0000"
-           id="flowSpan3863" /></flowPara></flowRoot>    <flowRoot
+         id="flowPara3467"
+         style="fill:#00aa00">7</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3469"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -882,10 +873,10 @@
          id="flowPara3475">I</flowPara><flowPara
          id="flowPara3491" /><flowPara
          id="flowPara3493"><flowSpan
-           style="fill:#00aa00"
-           id="flowSpan3877">5</flowSpan><flowSpan
            style="fill:#aa0000"
-           id="flowSpan3855">         ↑</flowSpan></flowPara><flowPara
+           id="flowSpan3855"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3573">8</flowSpan>         ↑</flowSpan></flowPara><flowPara
          id="flowPara3485" /><flowPara
          id="flowPara3487" /><flowPara
          id="flowPara3489">5</flowPara><flowPara
@@ -905,11 +896,8 @@
            y="239.77205" /></flowRegion><flowPara
          id="flowPara3501">O</flowPara><flowPara
          id="flowPara3503" /><flowPara
-         id="flowPara3505"><flowSpan
-           style="fill:#00aa00"
-           id="flowSpan3879">6</flowSpan><flowSpan
-           style="fill:#aa0000"
-           id="flowSpan3853" /></flowPara></flowRoot>    <flowRoot
+         id="flowPara3505"
+         style="fill:#00aa00">9</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3507"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -970,10 +958,10 @@
    id="flowSpan4726">N</flowSpan></flowPara><flowPara
          id="flowPara3549" /><flowPara
          id="flowPara3551"><flowSpan
-           style="fill:#00aa00"
-           id="flowSpan3885">1</flowSpan><flowSpan
            style="fill:#aa0000"
-           id="flowSpan3861">       ←</flowSpan></flowPara></flowRoot>    <flowRoot
+           id="flowSpan3861"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3575">4</flowSpan>       ←</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3553"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -989,10 +977,10 @@
    id="flowSpan4728">E</flowSpan></flowPara><flowPara
          id="flowPara3561" /><flowPara
          id="flowPara3563"><flowSpan
-           style="fill:#00aa00"
-           id="flowSpan3883">2</flowSpan><flowSpan
            style="fill:#aa0000"
-           id="flowSpan3859">        ↓</flowSpan></flowPara></flowRoot>    <flowRoot
+           id="flowSpan3859"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3577">5</flowSpan>        ↓</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3565"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1006,10 +994,10 @@
          id="flowPara3571">L</flowPara><flowPara
          id="flowPara3573" /><flowPara
          id="flowPara3575"><flowSpan
-           style="fill:#00aa00"
-           id="flowSpan3881">3</flowSpan><flowSpan
            style="fill:#aa0000"
-           id="flowSpan3857">       →    </flowSpan></flowPara></flowRoot>    <flowRoot
+           id="flowSpan3857"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3579">6</flowSpan>       →    </flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3577"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1051,9 +1039,11 @@
          id="flowPara3601" /><flowPara
          id="flowPara3603"><flowSpan
            style="fill:#00aa00"
-           id="flowSpan3887">0       </flowSpan><flowSpan
+           id="flowSpan3887" /><flowSpan
            id="flowSpan3787"
-           style="fill:#aa0000">;-) </flowSpan></flowPara></flowRoot>    <flowRoot
+           style="fill:#aa0000"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3585">1</flowSpan>       ;-)        </flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3605"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1067,9 +1057,11 @@
          id="flowPara3611">,           ;</flowPara><flowPara
          id="flowPara3613" /><flowPara
          id="flowPara3615"
-         style="fill:#00aa00">,       <flowSpan
-   style="fill:#aa0000"
-   id="flowSpan3783">:-P</flowSpan></flowPara></flowRoot>    <flowRoot
+         style="fill:#00aa00"><flowSpan
+           style="fill:#aa0000"
+           id="flowSpan3783"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3583">2</flowSpan>      :-P</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3617"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1083,7 +1075,9 @@
          id="flowPara3623">.           :</flowPara><flowPara
          id="flowPara3755" /><flowPara
          id="flowPara3757"
-         style="fill:#aa0000">        :-D</flowPara><flowPara
+         style="fill:#aa0000"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3581">3</flowSpan>      :-D</flowPara><flowPara
          id="flowPara3625" /><flowPara
          id="flowPara3627"
          style="fill:#00aa00" /></flowRoot>    <flowRoot
@@ -1129,7 +1123,9 @@
          id="flowPara3659">[ ]</flowPara><flowPara
          id="flowPara3833" /><flowPara
          id="flowPara3835"
-         style="fill:#aa0000">     ♫♪♫</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3589">,</flowSpan>    ♫♪♫</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3669"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1144,7 +1140,9 @@
          id="flowPara3841"
          style="font-size:9px" /><flowPara
          style="font-size:9px;fill:#aa0000"
-         id="flowPara3843">  ¯\_(ツ)_/¯</flowPara></flowRoot>    <flowRoot
+         id="flowPara3843"><flowSpan
+   style="fill:#00aa00"
+   id="flowSpan3587">.</flowSpan> ¯\_(ツ)_/¯</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3677"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1192,15 +1190,16 @@
          id="flowPara3723">BkSpc</flowPara></flowRoot>    <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
-       x="256.4678"
-       y="986.42175"
+       x="264.29861"
+       y="1016.6509"
        id="text3730-2-1"
        sodipodi:linespacing="125%"
        transform="matrix(0.70899364,-0.70521488,0.70521488,0.70899364,0,0)"><tspan
          sodipodi:role="line"
          id="tspan3732-9-8"
-         x="256.4678"
-         y="986.42175"> PrtScr</tspan></text>
+         x="264.29861"
+         y="1016.6509"
+         style="fill:#aa0000"> PrtScr</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
