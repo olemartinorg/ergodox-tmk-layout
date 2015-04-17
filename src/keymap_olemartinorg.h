@@ -56,7 +56,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              F12,   F6,  F7,  F8,  F9, F10,TRNS,
              TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
-             TRNS, FN7, FN8, FN9,FN10,FN11,FN12,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                        FN13,FN14,FN15,TRNS,TRNS,
          FN6,PSCR,
         TRNS,
@@ -146,12 +146,6 @@ enum macro_id {
     M_CLOSURE,
     M_EMAIL_DOMAIN,
     M_USERNAME,
-    M_SMILEY1,
-    M_SMILEY2,
-    M_SMILEY3,
-    M_SMILEY4,
-    M_SMILEY5,
-    M_SMILEY6,
     M_LOOK_OF_DISAPPROVAL,
     M_MUSIC,
     M_SHRUG,
@@ -196,13 +190,6 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [5] =   ACTION_MACRO(M_CLOSURE),                        // FN5  = Type out "function() {}" and then a left arrow
 
     [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
-
-    [7] =   ACTION_MACRO(M_SMILEY1),                        // FN7  = Type out ":-)"
-    [8] =   ACTION_MACRO(M_SMILEY2),                        // FN8  = Type out ";-)"
-    [9] =   ACTION_MACRO(M_SMILEY3),                        // FN9  = Type out ":-P"
-    [10] =  ACTION_MACRO(M_SMILEY4),                        // FN10 = Type out ":-D"
-    [11] =  ACTION_MACRO(M_SMILEY5),                        // FN11 = Type out ":-O"
-    [12] =  ACTION_MACRO(M_SMILEY6),                        // FN12 = Type out ":-/"
 
     [13] =  ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN13 = Type out "ಠ_ಠ"
     [14] =  ACTION_MACRO(M_MUSIC),                          // FN14 = Type out "♫♪♫"
@@ -294,18 +281,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(
                     T(O), T(L), T(E), T(M), T(A), T(R), T(T), T(I), T(N), T(O), T(R), T(G), END
                 );
-            case M_SMILEY1:
-                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(9), U(LSHIFT), END);
-            case M_SMILEY2:
-                return MACRO(D(LSHIFT), T(COMMA), U(LSHIFT), T(SLASH), D(LSHIFT), T(9), U(LSHIFT), END);
-            case M_SMILEY3:
-                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(P), U(LSHIFT), END);
-            case M_SMILEY4:
-                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(D), U(LSHIFT), END);
-            case M_SMILEY5:
-                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(O), U(LSHIFT), END);
-            case M_SMILEY6:
-                return MACRO(D(LSHIFT), T(DOT), U(LSHIFT), T(SLASH), D(LSHIFT), T(7), U(LSHIFT), END);
             case M_LOOK_OF_DISAPPROVAL:
                 return MACRO(
                     D(LCTRL), D(LSHIFT), T(U), T(0), T(C), T(A), T(0), U(LCTRL),
