@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="layout.pdf"
+   sodipodi:docname="layout.svg"
    inkscape:export-filename="/home/olemh/dev/ergodox-tmk-layout/layout.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -37,9 +37,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284273"
-     inkscape:cx="718.17663"
-     inkscape:cy="397.95146"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="868.64042"
+     inkscape:cy="515.60194"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,9 +48,9 @@
      fit-margin-right="10"
      fit-margin-bottom="10"
      inkscape:window-width="1440"
-     inkscape:window-height="1247"
+     inkscape:window-height="2474"
      inkscape:window-x="0"
-     inkscape:window-y="1313"
+     inkscape:window-y="86"
      inkscape:window-maximized="0"
      units="mm"
      inkscape:snap-global="true">
@@ -70,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1024,7 +1024,7 @@
    id="flowSpan4730">K</flowSpan></flowPara><flowPara
          id="flowPara3747" /><flowPara
          id="flowPara3749"
-         style="fill:#aa0000">         :-)</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3593"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1042,8 +1042,8 @@
            id="flowSpan3887" /><flowSpan
            id="flowSpan3787"
            style="fill:#aa0000"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan3585">1</flowSpan>       ;-)        </flowSpan></flowPara></flowRoot>    <flowRoot
+             style="fill:#00aa00"
+             id="flowSpan3585">1</flowSpan></flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3605"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1060,8 +1060,8 @@
          style="fill:#00aa00"><flowSpan
            style="fill:#aa0000"
            id="flowSpan3783"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan3583">2</flowSpan>      :-P</flowSpan></flowPara></flowRoot>    <flowRoot
+             style="fill:#00aa00"
+             id="flowSpan3583">2</flowSpan></flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3617"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1076,8 +1076,8 @@
          id="flowPara3755" /><flowPara
          id="flowPara3757"
          style="fill:#aa0000"><flowSpan
-   style="fill:#00aa00"
-   id="flowSpan3581">3</flowSpan>      :-D</flowPara><flowPara
+           style="fill:#00aa00"
+           id="flowSpan3581">3</flowSpan></flowPara><flowPara
          id="flowPara3625" /><flowPara
          id="flowPara3627"
          style="fill:#00aa00" /></flowRoot>    <flowRoot
@@ -1093,9 +1093,8 @@
            y="348.06644" /></flowRegion><flowPara
          id="flowPara3761">-         _</flowPara><flowPara
          id="flowPara3769" /><flowPara
-         id="flowPara3771"
-         style="fill:#aa0000">        :-O</flowPara><flowPara
-         id="flowPara3767" /></flowRoot>    <flowRoot
+         id="flowPara3767"
+         style="fill:#aa0000" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3637"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1109,7 +1108,7 @@
          id="flowPara3643">RCtrl</flowPara><flowPara
          id="flowPara3773" /><flowPara
          id="flowPara3775"
-         style="fill:#aa0000">                :-/</flowPara></flowRoot>    <flowRoot
+         style="fill:#aa0000" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3653"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
