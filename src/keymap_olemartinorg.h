@@ -46,8 +46,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
         TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
-        TRNS, FN0,FN18,FN16,FN19,FN20,
-        TRNS, FN1, FN2, FN3, FN4, FN5,FN17,
+        TRNS, FN0,FN12,FN10,FN13,FN14,
+        TRNS, FN1, FN2, FN3, FN4, FN5,FN11,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
@@ -57,7 +57,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,TRNS,VOLD,  UP,VOLU,TRNS,TRNS,
                   TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                       FN13,FN14,FN15,TRNS,TRNS,
+                        FN7, FN8, FN9,TRNS,TRNS,
          FN6,PSCR,
         TRNS,
         TRNS,TRNS,TRNS
@@ -191,15 +191,15 @@ static const uint16_t PROGMEM fn_actions_2[] = {
 
     [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
 
-    [13] =  ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN13 = Type out "ಠ_ಠ"
-    [14] =  ACTION_MACRO(M_MUSIC),                          // FN14 = Type out "♫♪♫"
-    [15] =  ACTION_MACRO(M_SHRUG),                          // FN15 = Type out "¯\_(ツ)_/¯"
+    [7] =   ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN7  = Type out "ಠ_ಠ"
+    [8] =   ACTION_MACRO(M_MUSIC),                          // FN8  = Type out "♫♪♫"
+    [9] =   ACTION_MACRO(M_SHRUG),                          // FN9  = Type out "¯\_(ツ)_/¯"
 
-    [16] =  ACTION_MACRO(M_FAT_ARROW),                      // FN16 = Type out "=>"
-    [17] =  ACTION_MACRO(M_ARRAY),                          // FN17 = Type out "array()" and then left arrow
-    [18] =  ACTION_MACRO(M_ARROW),                          // FN18 = Type out "->"
-    [19] =  ACTION_MACRO(M_THIS_ARROW),                     // FN19 = Type out "$this->"
-    [20] =  ACTION_MACRO(M_SELF),                           // FN20 = Type out "self::"
+    [10] =  ACTION_MACRO(M_FAT_ARROW),                      // FN10 = Type out "=>"
+    [11] =  ACTION_MACRO(M_ARRAY),                          // FN11 = Type out "array()" and then left arrow
+    [12] =  ACTION_MACRO(M_ARROW),                          // FN12 = Type out "->"
+    [13] =  ACTION_MACRO(M_THIS_ARROW),                     // FN13 = Type out "$this->"
+    [14] =  ACTION_MACRO(M_SELF),                           // FN14 = Type out "self::"
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
