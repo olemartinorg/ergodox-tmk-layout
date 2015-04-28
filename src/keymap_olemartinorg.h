@@ -136,6 +136,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 enum function_id {
     F_TEENSY_KEY,
     F_FOUR,
+    F_PARENS,
+    F_BRACKETS,
+    F_BRACES,
 };
 
 enum macro_id {
@@ -200,6 +203,10 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [12] =  ACTION_MACRO(M_ARROW),                          // FN12 = Type out "->"
     [13] =  ACTION_MACRO(M_THIS_ARROW),                     // FN13 = Type out "$this->"
     [14] =  ACTION_MACRO(M_SELF),                           // FN14 = Type out "self::"
+
+    [24] =  ACTION_FUNCTION(F_PARENS),                      // FN24 = Prints out ( and )
+    [25] =  ACTION_FUNCTION(F_BRACKETS),                    // FN25 = Prints out [ and ]
+    [26] =  ACTION_FUNCTION(F_BRACES),                      // FN26 = Prints out { and }
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
@@ -228,7 +235,7 @@ void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
     bool shift_pressed = get_mods() == shift;
 
     if (record->event.pressed && shift_pressed) {
-        add_key(key);
+        add_key(key_when_shifted);
         if(weak_mod_when_shifted) {
             add_weak_mods(MOD_BIT(weak_mod_when_shifted));
         }
@@ -238,7 +245,7 @@ void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
             add_weak_mods(MOD_BIT(weak_mod));
         }
     } else if (!record->event.pressed && shift_pressed) {
-        del_key(key);
+        del_key(key_when_shifted);
         if(weak_mod_when_shifted) {
             del_weak_mods(MOD_BIT(weak_mod_when_shifted));
         }
@@ -271,6 +278,12 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
     if (id == F_FOUR)
         action_function_custom(record, KC_4, 0, KC_4, KC_RALT);
+    else if (id == F_PARENS)
+        action_function_custom(record, KC_8, KC_RSHIFT, KC_9, KC_RSHIFT);
+    else if (id == F_BRACKETS)
+        action_function_custom(record, KC_8, KC_RALT, KC_9, KC_RALT);
+    else if (id == F_BRACES)
+        action_function_custom(record, KC_7, KC_RALT, KC_0, KC_RALT);
 }
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
