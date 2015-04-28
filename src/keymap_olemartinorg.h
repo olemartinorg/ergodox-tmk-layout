@@ -221,6 +221,42 @@ static const uint16_t PROGMEM fn_actions_3[] = {
     [12] = ACTION_RECORD_SET_INTERVAL(3),                   // FN12 = Set playback interval to 16*3ms
 };
 
+void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
+                            uint8_t key_when_shifted, uint8_t weak_mod_when_shifted)
+{
+    uint8_t shift = MOD_BIT(KC_LSHIFT);
+    bool shift_pressed = get_mods() & shift;
+
+    if (record->event.pressed && shift_pressed) {
+        add_key(key);
+        if(weak_mod_when_shifted) {
+            add_weak_mods(MOD_BIT(weak_mod_when_shifted));
+        }
+    } else if(record->event.pressed && !shift_pressed) {
+        add_key(key);
+        if(weak_mod) {
+            add_weak_mods(MOD_BIT(weak_mod));
+        }
+    } else if (!record->event.pressed && shift_pressed) {
+        del_key(key);
+        if(weak_mod_when_shifted) {
+            del_weak_mods(MOD_BIT(weak_mod_when_shifted));
+        }
+    } else {
+        del_key(key);
+        if(weak_mod) {
+            del_weak_mods(MOD_BIT(weak_mod));
+        }
+    }
+
+    if (shift_pressed) {
+        del_mods(shift);
+    }
+    send_keyboard_report();
+    if (shift_pressed) {
+        add_mods(shift);
+    }
+}
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
@@ -233,26 +269,8 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         return;
     }
 
-    uint8_t shift = MOD_BIT(KC_LSHIFT);
-    bool shift_pressed = get_mods() & shift;
-
-    if (record->event.pressed && shift_pressed) {
-        add_key(KC_4);
-        add_weak_mods(MOD_BIT(KC_RALT));
-    } else if(record->event.pressed && !shift_pressed) {
-        add_key(KC_4);
-    } else if (!record->event.pressed) {
-        del_key(KC_4);
-        del_weak_mods(MOD_BIT(KC_RALT));
-    }
-
-    if (shift_pressed) {
-        del_mods(shift);
-    }
-    send_keyboard_report();
-    if (shift_pressed) {
-        add_mods(shift);
-    }
+    if (id == FOUR)
+        action_function_custom(record, KC_4, 0, KC_4, KC_RALT);
 }
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
