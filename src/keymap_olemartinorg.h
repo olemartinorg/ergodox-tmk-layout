@@ -46,8 +46,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
         TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
-        TRNS, FN0,FN12,FN10,FN13,FN14,
-        TRNS, FN1, FN2, FN3, FN4, FN5,FN11,
+        TRNS, FN0, FN9, FN7,FN10,FN11,
+        TRNS, FN1, FN2, FN3, FN4, FN5, FN8,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
@@ -57,7 +57,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,WH_U,VOLD,  UP,VOLU,TRNS,TRNS,
                   WH_D,LEFT,DOWN,RGHT,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                        FN7, FN8, FN9,TRNS,TRNS,
+                       TRNS,TRNS,TRNS,TRNS,TRNS,
          FN6,PSCR,
         TRNS,
         TRNS,TRNS,TRNS
@@ -149,9 +149,6 @@ enum macro_id {
     M_CLOSURE,
     M_EMAIL_DOMAIN,
     M_USERNAME,
-    M_LOOK_OF_DISAPPROVAL,
-    M_MUSIC,
-    M_SHRUG,
     M_ARROW,
     M_FAT_ARROW,
     M_THIS_ARROW,
@@ -194,16 +191,13 @@ static const uint16_t PROGMEM fn_actions_2[] = {
 
     [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
 
-    [7] =   ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN7  = Type out "ಠ_ಠ"
-    [8] =   ACTION_MACRO(M_MUSIC),                          // FN8  = Type out "♫♪♫"
-    [9] =   ACTION_MACRO(M_SHRUG),                          // FN9  = Type out "¯\_(ツ)_/¯"
+    [7] =  ACTION_MACRO(M_FAT_ARROW),                       // FN7  = Type out "=>"
+    [8] =  ACTION_MACRO(M_ARRAY),                           // FN8  = Type out "array()" and then left arrow
+    [9] =  ACTION_MACRO(M_ARROW),                           // FN9  = Type out "->"
+    [10] =  ACTION_MACRO(M_THIS_ARROW),                     // FN10 = Type out "$this->"
+    [11] =  ACTION_MACRO(M_SELF),                           // FN11 = Type out "self::"
 
-    [10] =  ACTION_MACRO(M_FAT_ARROW),                      // FN10 = Type out "=>"
-    [11] =  ACTION_MACRO(M_ARRAY),                          // FN11 = Type out "array()" and then left arrow
-    [12] =  ACTION_MACRO(M_ARROW),                          // FN12 = Type out "->"
-    [13] =  ACTION_MACRO(M_THIS_ARROW),                     // FN13 = Type out "$this->"
-    [14] =  ACTION_MACRO(M_SELF),                           // FN14 = Type out "self::"
-
+    // Overwrite these from layer 0 instead of changing the layout
     [24] =  ACTION_FUNCTION(F_PARENS),                      // FN24 = Prints out ( and )
     [25] =  ACTION_FUNCTION(F_BRACKETS),                    // FN25 = Prints out [ and ]
     [26] =  ACTION_FUNCTION(F_BRACES),                      // FN26 = Prints out { and }
@@ -311,43 +305,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
             case M_USERNAME:
                 return MACRO(
                     T(O), T(L), T(E), T(M), T(A), T(R), T(T), T(I), T(N), T(O), T(R), T(G), END
-                );
-            case M_LOOK_OF_DISAPPROVAL:
-                return MACRO(
-                    D(LCTRL), D(LSHIFT), T(U), T(0), T(C), T(A), T(0), U(LCTRL),
-                    T(SLASH),
-                    D(LCTRL), T(U), T(0), T(C), T(A), T(0), U(LSHIFT), U(LCTRL),
-                    END
-                );
-            case M_MUSIC:
-                return MACRO(
-                    D(LCTRL), D(LSHIFT), T(U), T(2), T(6), T(6), T(B), U(LCTRL),
-                    D(LCTRL), T(U), T(2), T(6), T(6), T(A), U(LCTRL),
-                    D(LCTRL), T(U), T(2), T(6), T(6), T(B), U(LCTRL), U(LSHIFT),
-                    END
-                );
-            case M_SHRUG:
-                return MACRO(
-                    D(LSHIFT),
-                        D(LCTRL),
-                            T(U), T(A), T(F),
-                        U(LCTRL),
-                    U(LSHIFT),
-                    T(EQL),
-                    D(LSHIFT),
-                        T(SLASH),
-                        T(8),
-                        D(LCTRL),
-                            T(U), T(3), T(0), T(C), T(4),
-                        U(LCTRL),
-                        T(9),
-                        T(SLASH),
-                        T(7),
-                        D(LCTRL),
-                            T(U), T(A), T(F),
-                        U(LCTRL),
-                    U(LSHIFT),
-                    END
                 );
             case M_ARROW:
                 return MACRO(T(SLSH), D(LSHIFT), T(NUBS), U(LSHIFT), END);
