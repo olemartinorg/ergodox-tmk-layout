@@ -225,7 +225,7 @@ void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
                             uint8_t key_when_shifted, uint8_t weak_mod_when_shifted)
 {
     uint8_t shift = MOD_BIT(KC_LSHIFT);
-    bool shift_pressed = get_mods() & shift;
+    bool shift_pressed = get_mods() == shift;
 
     if (record->event.pressed && shift_pressed) {
         add_key(key);
