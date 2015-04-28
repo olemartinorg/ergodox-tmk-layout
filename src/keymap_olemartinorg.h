@@ -5,7 +5,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LALT,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
-        FN30,FN31,  NO,NUBS,FN24,
+        FN30,FN31,  NO,FN23,FN24,
                                       HOME, END,
                                            PGUP,
                                 FN29, LGUI,PGDN,
@@ -48,7 +48,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
         TRNS, FN0, FN9, FN7,FN10,FN11,
         TRNS, FN1, FN2, FN3, FN4, FN5, FN8,
-        TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,NUBS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
                                  TRNS,TRNS,TRNS,
@@ -157,6 +157,7 @@ enum macro_id {
     M_PARENS,
     M_BRACKETS,
     M_BRACES,
+    M_TAGS,
 };
 
 /*
@@ -169,6 +170,7 @@ static const uint16_t PROGMEM fn_actions[] = {
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
+    [23] =  ACTION_MACRO(M_TAGS),                           // FN23 = Prints out <> and left arrow
     [24] =  ACTION_MACRO(M_PARENS),                         // FN24 = Prints out () and left arrow
     [25] =  ACTION_MACRO(M_BRACKETS),                       // FN25 = Prints out [] and left arrow
     [26] =  ACTION_MACRO(M_BRACES),                         // FN26 = Prints out {} and left arrow
@@ -322,7 +324,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(D(RALT), T(8), T(9), U(RALT), T(LEFT), END);
             case M_BRACES:
                 return MACRO(D(RALT), T(7), T(0), U(RALT), T(LEFT), END);
-
+            case M_TAGS:
+                return MACRO(T(NUBS), D(LSHIFT), T(NUBS), U(LSHIFT), T(LEFT), END);
         }
     }
     return MACRO_NONE;
