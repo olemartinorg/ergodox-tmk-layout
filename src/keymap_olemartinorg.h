@@ -134,8 +134,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* id for user defined functions & macros */
 enum function_id {
-    TEENSY_KEY,
-    FOUR,
+    F_TEENSY_KEY,
+    F_FOUR,
 };
 
 enum macro_id {
@@ -164,7 +164,7 @@ enum macro_id {
  */
 static const uint16_t PROGMEM fn_actions[] = {
     // Beginning on 0: Actions that are only needed on layer 0
-    [0] =   ACTION_FUNCTION(TEENSY_KEY),                    // FN0  - Teensy key
+    [0] =   ACTION_FUNCTION(F_TEENSY_KEY),                  // FN0  - Teensy key
 
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
@@ -172,7 +172,7 @@ static const uint16_t PROGMEM fn_actions[] = {
     [24] =  ACTION_MACRO(M_PARENS),                         // FN24 = Prints out () and left arrow
     [25] =  ACTION_MACRO(M_BRACKETS),                       // FN25 = Prints out [] and left arrow
     [26] =  ACTION_MACRO(M_BRACES),                         // FN26 = Prints out {} and left arrow
-    [27] =  ACTION_FUNCTION(FOUR),                          // FN27 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
+    [27] =  ACTION_FUNCTION(F_FOUR),                        // FN27 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
 
     [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
     [29] =  ACTION_LAYER_TAP_TOGGLE(2),                     // FN29 = Hold to use layer 2, serial taps to toggle
@@ -260,7 +260,7 @@ void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
-    if (id == TEENSY_KEY) {
+    if (id == F_TEENSY_KEY) {
         clear_keyboard();
         print("\n\nJump to bootloader... ");
         _delay_ms(50);
@@ -269,7 +269,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         return;
     }
 
-    if (id == FOUR)
+    if (id == F_FOUR)
         action_function_custom(record, KC_4, 0, KC_4, KC_RALT);
 }
 
