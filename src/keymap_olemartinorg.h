@@ -14,7 +14,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               TAB,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
-                      NO,  NO,MINS, EQL,RBRC,
+                    FN25,  NO,MINS, EQL,RBRC,
          FN1,  NO,
          INS,
         RALT, ENT, SPC
@@ -126,6 +126,27 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
+    KEYMAP(  // Layer6: alternatives for commonly used punctuation
+        // left hand
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,
+                                      TRNS,TRNS,
+                                           TRNS,
+                                 TRNS,TRNS,TRNS,
+        // right hand
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,NUHS, FN0,TRNS,TRNS,TRNS,
+                  TRNS, FN1, FN3, FN2,NUBS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                       TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,
+        TRNS,
+        TRNS,TRNS,TRNS
+    ),
+
 /*
     // template to copy from
 
@@ -194,6 +215,7 @@ static const uint16_t PROGMEM fn_actions[] = {
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
+    [25] =  ACTION_LAYER_TAP_TOGGLE(6),                     // FN25 = Hold to use layer 6, serial taps to toggle
     [26] =  ACTION_LAYER_TAP_TOGGLE(5),                     // FN26 = Hold to use layer 5, serial taps to toggle
     [27] =  ACTION_FUNCTION(F_FOUR),                        // FN27 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
     [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
@@ -246,6 +268,13 @@ static const uint16_t PROGMEM fn_actions_5[] = {
     [3] =  ACTION_MACRO(M_PARENS),                          // FN3  = Prints out () and left arrow
     [4] =  ACTION_MACRO(M_BRACKETS),                        // FN4  = Prints out [] and left arrow
     [5] =  ACTION_MACRO(M_BRACES),                          // FN5  = Prints out {} and left arrow
+};
+
+static const uint16_t PROGMEM fn_actions_6[] = {
+    [0] =  ACTION_MACRO(M_DBL_QUOTE),                       // FN0 = Prints out "
+    [1] =  ACTION_FUNCTION(F_PARENS),                       // FN1 = Prints out ( and )
+    [2] =  ACTION_FUNCTION(F_BRACKETS),                     // FN2 = Prints out [ and ]
+    [3] =  ACTION_FUNCTION(F_BRACES),                       // FN3 = Prints out { and }
 };
 
 void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
@@ -360,6 +389,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 #define FN_ACTIONS_2_SIZE (sizeof(fn_actions_2) / sizeof(fn_actions_2[0]))
 #define FN_ACTIONS_3_SIZE (sizeof(fn_actions_3) / sizeof(fn_actions_3[0]))
 #define FN_ACTIONS_5_SIZE (sizeof(fn_actions_5) / sizeof(fn_actions_5[0]))
+#define FN_ACTIONS_6_SIZE (sizeof(fn_actions_6) / sizeof(fn_actions_6[0]))
 
 /*
 * translates Fn keycode to action
@@ -371,6 +401,9 @@ action_t keymap_fn_to_action(uint8_t keycode)
     action_t action;
     action.code = ACTION_NO;
 
+    if (layer == 6 && FN_INDEX(keycode) < FN_ACTIONS_6_SIZE) {
+        action.code = pgm_read_word(&fn_actions_6[FN_INDEX(keycode)]);
+    }
     if (layer == 5 && FN_INDEX(keycode) < FN_ACTIONS_5_SIZE) {
         action.code = pgm_read_word(&fn_actions_5[FN_INDEX(keycode)]);
     }
