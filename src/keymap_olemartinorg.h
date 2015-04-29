@@ -45,7 +45,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer2: F-keys, arrows, media buttons
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
-        TRNS,MPRV,MPLY,MNXT,TRNS,TRNS,TRNS,
+        TRNS,MPRV,MPLY,MNXT,FN12,TRNS,TRNS,
         TRNS, FN0, FN9, FN7,FN10,FN11,
         TRNS, FN1, FN2, FN3, FN4, FN5, FN8,
         TRNS,TRNS,TRNS,NUBS,TRNS,
@@ -203,6 +203,7 @@ enum macro_id {
     M_DBL_QUOTES,
     M_DBL_QUOTE,
     M_SNG_QUOTES,
+    M_DOLLAR,
 };
 
 /*
@@ -235,11 +236,13 @@ static const uint16_t PROGMEM fn_actions_2[] = {
 
     [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
 
-    [7] =  ACTION_MACRO(M_FAT_ARROW),                       // FN7  = Type out "=>"
-    [8] =  ACTION_MACRO(M_ARRAY),                           // FN8  = Type out "array()" and then left arrow
-    [9] =  ACTION_MACRO(M_ARROW),                           // FN9  = Type out "->"
+    [7] =   ACTION_MACRO(M_FAT_ARROW),                      // FN7  = Type out "=>"
+    [8] =   ACTION_MACRO(M_ARRAY),                          // FN8  = Type out "array()" and then left arrow
+    [9] =   ACTION_MACRO(M_ARROW),                          // FN9  = Type out "->"
     [10] =  ACTION_MACRO(M_THIS_ARROW),                     // FN10 = Type out "$this->"
     [11] =  ACTION_MACRO(M_SELF),                           // FN11 = Type out "self::"
+
+    [12] =  ACTION_MACRO(M_DOLLAR),                         // FN12 = Type out "$"
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
@@ -380,6 +383,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(D(LSHIFT), T(2), U(LSHIFT), END);
             case M_SNG_QUOTES:
                 return MACRO(T(NUHS), T(NUHS), T(LEFT), END);
+            case M_DOLLAR:
+                return MACRO(D(RALT), T(4), U(RALT), END);
         }
     }
     return MACRO_NONE;
