@@ -1,11 +1,11 @@
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer0: default
         // left hand
-        GRV,    1,   2,   3,FN27,   5, ESC,
+        GRV,    1,   2,   3,   4,   5, ESC,
         LALT,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
-        FN30,FN31,  NO,  NO,FN26,
+        FN30,FN31,  NO,  NO,FN27,
                                       HOME, END,
                                            PGUP,
                                 FN29, LGUI,PGDN,
@@ -14,7 +14,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               TAB,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
-                    FN25,  NO,MINS, EQL,RBRC,
+                    FN26,  NO,MINS, EQL,RBRC,
          FN1,  NO,
          INS,
         RALT, ENT, SPC
@@ -177,7 +177,6 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* id for user defined functions & macros */
 enum function_id {
     F_TEENSY_KEY,
-    F_FOUR,
     F_PARENS,
     F_BRACKETS,
     F_BRACES,
@@ -216,9 +215,8 @@ static const uint16_t PROGMEM fn_actions[] = {
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
-    [25] =  ACTION_LAYER_MOMENTARY(6),                      // FN25 = Hold to use layer 6
-    [26] =  ACTION_LAYER_MOMENTARY(5),                      // FN26 = Hold to use layer 5
-    [27] =  ACTION_FUNCTION(F_FOUR),                        // FN27 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
+    [26] =  ACTION_LAYER_MOMENTARY(6),                      // FN25 = Hold to use layer 6
+    [27] =  ACTION_LAYER_MOMENTARY(5),                      // FN26 = Hold to use layer 5
     [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
     [29] =  ACTION_LAYER_TAP_TOGGLE(2),                     // FN29 = Hold to use layer 2, serial taps to toggle
     [30] =  ACTION_LAYER_TAP_TOGGLE(3),                     // FN30 = Hold to use layer 3, serial taps to toggle
@@ -323,9 +321,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         return;
     }
 
-    if (id == F_FOUR)
-        action_function_custom(record, KC_4, 0, KC_4, KC_RALT);
-    else if (id == F_PARENS)
+    if (id == F_PARENS)
         action_function_custom(record, KC_8, KC_RSHIFT, KC_9, KC_RSHIFT);
     else if (id == F_BRACKETS)
         action_function_custom(record, KC_8, KC_RALT, KC_9, KC_RALT);
