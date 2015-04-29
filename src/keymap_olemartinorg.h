@@ -215,8 +215,8 @@ static const uint16_t PROGMEM fn_actions[] = {
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
-    [25] =  ACTION_LAYER_TAP_TOGGLE(6),                     // FN25 = Hold to use layer 6, serial taps to toggle
-    [26] =  ACTION_LAYER_TAP_TOGGLE(5),                     // FN26 = Hold to use layer 5, serial taps to toggle
+    [25] =  ACTION_LAYER_MOMENTARY(6),                      // FN25 = Hold to use layer 6
+    [26] =  ACTION_LAYER_MOMENTARY(5),                      // FN26 = Hold to use layer 5
     [27] =  ACTION_FUNCTION(F_FOUR),                        // FN27 = 4 normally, $ on shifted (the norwegian keyboard layout used ¤ instead)
     [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
     [29] =  ACTION_LAYER_TAP_TOGGLE(2),                     // FN29 = Hold to use layer 2, serial taps to toggle
