@@ -5,7 +5,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LALT,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
-        FN30,FN31,FN22,FN23,FN24,
+        FN30,FN31,  NO,  NO,FN21,
                                       HOME, END,
                                            PGUP,
                                 FN29, LGUI,PGDN,
@@ -14,7 +14,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               TAB,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
-                    FN26,FN25,MINS, EQL,RBRC,
+                      NO,  NO,MINS, EQL,RBRC,
          FN1,  NO,
          INS,
         RALT, ENT, SPC
@@ -117,8 +117,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  TRNS,TRNS,TRNS,
         // right hand
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS, FN1, FN0,TRNS,TRNS,TRNS,
+                  TRNS, FN3, FN5, FN4, FN2,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,
@@ -181,6 +181,7 @@ enum macro_id {
     M_TAGS,
     M_DBL_QUOTES,
     M_DBL_QUOTE,
+    M_SNG_QUOTES,
 };
 
 /*
@@ -193,6 +194,8 @@ static const uint16_t PROGMEM fn_actions[] = {
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
+    [21] =  ACTION_LAYER_TAP_TOGGLE(5),                     // FN21 (temporary) = Hold to use layer 5, serial taps to toggle
+
     [22] =  ACTION_MACRO(M_DBL_QUOTES),                     // FN22 = Prints out "" and left arrow
     [23] =  ACTION_MACRO(M_TAGS),                           // FN23 = Prints out <> and left arrow
     [24] =  ACTION_MACRO(M_PARENS),                         // FN24 = Prints out () and left arrow
@@ -250,6 +253,12 @@ static const uint16_t PROGMEM fn_actions_3[] = {
 };
 
 static const uint16_t PROGMEM fn_actions_5[] = {
+    [0] =  ACTION_MACRO(M_DBL_QUOTES),                      // FN0  = Prints out "" and left arrow
+    [1] =  ACTION_MACRO(M_SNG_QUOTES),                      // FN1  = Prints out '' and left arrow
+    [2] =  ACTION_MACRO(M_TAGS),                            // FN2  = Prints out <> and left arrow
+    [3] =  ACTION_MACRO(M_PARENS),                          // FN3  = Prints out () and left arrow
+    [4] =  ACTION_MACRO(M_BRACKETS),                        // FN4  = Prints out [] and left arrow
+    [5] =  ACTION_MACRO(M_BRACES),                          // FN5  = Prints out {} and left arrow
 };
 
 void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
@@ -353,6 +362,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(D(LSHIFT), T(2), T(2), U(LSHIFT), T(LEFT), END);
             case M_DBL_QUOTE:
                 return MACRO(D(LSHIFT), T(2), U(LSHIFT), END);
+            case M_SNG_QUOTES:
+                return MACRO(T(NUHS), T(NUHS), T(LEFT), END);
         }
     }
     return MACRO_NONE;
