@@ -105,6 +105,27 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
+    KEYMAP(  // Layer5: commonly used punctuation
+        // left hand
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,
+                                      TRNS,TRNS,
+                                           TRNS,
+                                 TRNS,TRNS,TRNS,
+        // right hand
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                       TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,
+        TRNS,
+        TRNS,TRNS,TRNS
+    ),
+
 /*
     // template to copy from
 
@@ -228,11 +249,15 @@ static const uint16_t PROGMEM fn_actions_3[] = {
     [12] = ACTION_RECORD_SET_INTERVAL(3),                   // FN12 = Set playback interval to 16*3ms
 };
 
+static const uint16_t PROGMEM fn_actions_5[] = {
+};
+
 void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
                             uint8_t key_when_shifted, uint8_t weak_mod_when_shifted)
 {
     uint8_t shift = MOD_BIT(KC_LSHIFT);
     bool shift_pressed = get_mods() == shift;
+    clear_weak_mods();
 
     if (record->event.pressed && shift_pressed) {
         add_key(key_when_shifted);
@@ -246,14 +271,8 @@ void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
         }
     } else if (!record->event.pressed && shift_pressed) {
         del_key(key_when_shifted);
-        if(weak_mod_when_shifted) {
-            del_weak_mods(MOD_BIT(weak_mod_when_shifted));
-        }
     } else {
         del_key(key);
-        if(weak_mod) {
-            del_weak_mods(MOD_BIT(weak_mod));
-        }
     }
 
     if (shift_pressed) {
@@ -342,6 +361,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 #define FN_ACTIONS_SIZE (sizeof(fn_actions) / sizeof(fn_actions[0]))
 #define FN_ACTIONS_2_SIZE (sizeof(fn_actions_2) / sizeof(fn_actions_2[0]))
 #define FN_ACTIONS_3_SIZE (sizeof(fn_actions_3) / sizeof(fn_actions_3[0]))
+#define FN_ACTIONS_5_SIZE (sizeof(fn_actions_5) / sizeof(fn_actions_5[0]))
 
 /*
 * translates Fn keycode to action
@@ -353,6 +373,9 @@ action_t keymap_fn_to_action(uint8_t keycode)
     action_t action;
     action.code = ACTION_NO;
 
+    if (layer == 5 && FN_INDEX(keycode) < FN_ACTIONS_5_SIZE) {
+        action.code = pgm_read_word(&fn_actions_5[FN_INDEX(keycode)]);
+    }
     if (layer == 3 && FN_INDEX(keycode) < FN_ACTIONS_3_SIZE) {
         action.code = pgm_read_word(&fn_actions_3[FN_INDEX(keycode)]);
     }
