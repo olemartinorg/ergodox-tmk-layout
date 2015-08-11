@@ -218,9 +218,9 @@ static const uint16_t PROGMEM fn_actions[] = {
     [26] =  ACTION_LAYER_MOMENTARY(6),                      // FN25 = Hold to use layer 6
     [27] =  ACTION_LAYER_MOMENTARY(5),                      // FN26 = Hold to use layer 5
     [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
-    [29] =  ACTION_LAYER_TAP_TOGGLE(2),                     // FN29 = Hold to use layer 2, serial taps to toggle
-    [30] =  ACTION_LAYER_TAP_TOGGLE(3),                     // FN30 = Hold to use layer 3, serial taps to toggle
-    [31] =  ACTION_LAYER_TAP_TOGGLE(4),                     // FN31 = Hold to use layer 4, serial taps to toggle
+    [29] =  ACTION_LAYER_MOMENTARY(2),                      // FN29 = Hold to use layer 2
+    [30] =  ACTION_LAYER_MOMENTARY(3),                      // FN30 = Hold to use layer 3
+    [31] =  ACTION_LAYER_MOMENTARY(4),                      // FN31 = Hold to use layer 4
 };
 
 static const uint16_t PROGMEM fn_actions_2[] = {
