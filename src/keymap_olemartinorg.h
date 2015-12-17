@@ -183,10 +183,10 @@ enum function_id {
 };
 
 enum macro_id {
-    M_PRIVATE,
-    M_PROTECTED,
-    M_PUBLIC,
-    M_STATIC,
+    M_PHP_FULL_TAG,
+    M_PHP_SHORT_ECHO,
+    M_LANGUAGE_FUNC,
+    M_JQUERY_SELECTOR,
     M_CLOSURE,
     M_EMAIL_DOMAIN,
     M_USERNAME,
@@ -226,10 +226,10 @@ static const uint16_t PROGMEM fn_actions[] = {
 static const uint16_t PROGMEM fn_actions_2[] = {
     [0] =   ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN0  = Shift + , = ;
 
-    [1] =   ACTION_MACRO(M_PRIVATE),                        // FN1  = Type out "private "
-    [2] =   ACTION_MACRO(M_PROTECTED),                      // FN2  = Type out "protected "
-    [3] =   ACTION_MACRO(M_PUBLIC),                         // FN3  = Type out "public "
-    [4] =   ACTION_MACRO(M_STATIC),                         // FN4  = Type out "static "
+    [1] =   ACTION_MACRO(M_PHP_FULL_TAG),                   // FN1  = Type out "<?php ?>" and two left arrows
+    [2] =   ACTION_MACRO(M_PHP_SHORT_ECHO),                 // FN2  = Type out "<?=?>" and two left arrows
+    [3] =   ACTION_MACRO(M_LANGUAGE_FUNC),                  // FN3  = Type out "L()" and a left arrow
+    [4] =   ACTION_MACRO(M_JQUERY_SELECTOR),                // FN4  = Type out "$('')" and two left arrows
     [5] =   ACTION_MACRO(M_CLOSURE),                        // FN5  = Type out "function() {}" and then a left arrow
 
     [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
@@ -332,14 +332,23 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     if (record->event.pressed) {
         switch (id) {
-            case M_PRIVATE:
-                return MACRO(T(P), T(R), T(I), T(V), T(A), T(T), T(E), T(SPC), END);
-            case M_PROTECTED:
-                return MACRO(T(P), T(R), T(O), T(T), T(E), T(C), T(T), T(E), T(D), T(SPC), END);
-            case M_PUBLIC:
-                return MACRO(T(P), T(U), T(B), T(L), T(I), T(C), T(SPC), END);
-            case M_STATIC:
-                return MACRO(T(S), T(T), T(A), T(T), T(I), T(C), T(SPC), END);
+            case M_PHP_FULL_TAG:
+                return MACRO(
+                    T(NUBS), D(LSHIFT), T(MINS), U(LSHIFT), T(P), T(H), T(P), T(SPC),
+                    D(LSHIFT), T(MINS), T(NUBS), U(LSHIFT), T(LEFT), T(LEFT), END
+                );
+            case M_PHP_SHORT_ECHO:
+                return MACRO(
+                    T(NUBS), D(LSHIFT), T(MINS), T(0), T(MINS), T(NUBS), U(LSHIFT),
+                    T(LEFT), T(LEFT), END
+                );
+            case M_LANGUAGE_FUNC:
+                return MACRO(D(LSHIFT), T(L), T(8), T(9), U(LSHIFT), T(LEFT), END);
+            case M_JQUERY_SELECTOR:
+                return MACRO(
+                    D(RALT), T(4), U(RALT), D(LSHIFT), T(8), U(LSHIFT), T(NUHS),
+                    T(NUHS), D(LSHIFT), T(9), U(LSHIFT), T(LEFT), T(LEFT), END
+                );
             case M_CLOSURE:
                 return MACRO(
                     T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N),
