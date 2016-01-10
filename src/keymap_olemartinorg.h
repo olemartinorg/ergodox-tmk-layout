@@ -228,7 +228,7 @@ static const uint16_t PROGMEM fn_actions_2[] = {
 
     [1] =   ACTION_MACRO(M_PHP_FULL_TAG),                   // FN1  = Type out "<?php ?>" and two left arrows
     [2] =   ACTION_MACRO(M_PHP_SHORT_ECHO),                 // FN2  = Type out "<?=?>" and two left arrows
-    [3] =   ACTION_MACRO(M_LANGUAGE_FUNC),                  // FN3  = Type out "L()" and a left arrow
+    [3] =   ACTION_MACRO(M_LANGUAGE_FUNC),                  // FN3  = Type out "L()", a left arrow and then "_" => "L(_)"
     [4] =   ACTION_MACRO(M_JQUERY_SELECTOR),                // FN4  = Type out "$('')" and two left arrows
     [5] =   ACTION_MACRO(M_CLOSURE),                        // FN5  = Type out "function() {}" and then a left arrow
 
@@ -343,7 +343,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                     T(LEFT), T(LEFT), END
                 );
             case M_LANGUAGE_FUNC:
-                return MACRO(D(LSHIFT), T(L), T(8), T(9), U(LSHIFT), T(LEFT), END);
+                return MACRO(
+                    D(LSHIFT), T(L), T(8), T(9), U(LSHIFT), T(LEFT), D(LSHIFT),
+                    T(SLSH), U(LSHIFT), END
+                );
             case M_JQUERY_SELECTOR:
                 return MACRO(
                     D(RALT), T(4), U(RALT), D(LSHIFT), T(8), U(LSHIFT), T(NUHS),
