@@ -48,7 +48,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,MPRV,MPLY,MNXT,FN12,TRNS,TRNS,
         TRNS, FN0, FN9, FN7,FN10,FN11,
         TRNS, FN1, FN2, FN3, FN4, FN5, FN8,
-        TRNS,TRNS,TRNS,NUBS,TRNS,
+        TRNS,TRNS,TRNS,NUBS,FN13,
                                       TRNS,TRNS,
                                            TRNS,
                                  TRNS,TRNS,TRNS,
@@ -203,6 +203,7 @@ enum macro_id {
     M_DBL_QUOTE,
     M_SNG_QUOTES,
     M_DOLLAR,
+    M_TYPE_HINT,
 };
 
 /*
@@ -241,6 +242,8 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [11] =  ACTION_MACRO(M_SELF),                           // FN11 = Type out "self::"
 
     [12] =  ACTION_MACRO(M_DOLLAR),                         // FN12 = Type out "$"
+
+    [13] =  ACTION_MACRO(M_TYPE_HINT),                      // FN13 = Type out "/* @var  */" and press 3x left
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
@@ -357,6 +360,12 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                     T(F), T(U), T(N), T(C), T(T), T(I), T(O), T(N),
                     D(LSHIFT), T(8), T(9), U(LSHIFT), T(SPC), D(RALT),
                     T(7), T(0), U(RALT), T(LEFT), END
+                );
+            case M_TYPE_HINT:
+                return MACRO(
+                    D(LSHIFT), T(7), T(NUHS), U(LSHIFT), T(SPC), D(RALT), T(2), U(RALT),
+                    T(V), T(A), T(R), T(SPC), T(SPC), D(LSHIFT), T(NUHS), T(7), U(LSHIFT),
+                    T(LEFT), T(LEFT), T(LEFT), END
                 );
             case M_EMAIL_DOMAIN:
                 return MACRO(
