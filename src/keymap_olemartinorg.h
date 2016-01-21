@@ -57,7 +57,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              TRNS,WH_U,VOLD,  UP,VOLU,TRNS,TRNS,
                   WH_D,LEFT,DOWN,RGHT,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
+                       FN31,FN30,TRNS,TRNS,TRNS,
          FN6,PSCR,
         TRNS,
         TRNS,TRNS,TRNS
@@ -204,6 +204,9 @@ enum macro_id {
     M_SNG_QUOTES,
     M_DOLLAR,
     M_TYPE_HINT,
+
+    M_SHRUG,
+    M_LOOK_OF_DISAPPROVAL,
 };
 
 /*
@@ -244,6 +247,9 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [12] =  ACTION_MACRO(M_DOLLAR),                         // FN12 = Type out "$"
 
     [13] =  ACTION_MACRO(M_TYPE_HINT),                      // FN13 = Type out "/* @var  */" and press 3x left
+
+    [30] =  ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN30 = Type out ಠ_ಠ
+    [31] =  ACTION_MACRO(M_SHRUG),                          // FN31 = Type out ¯\_(ツ)_/¯
 };
 
 static const uint16_t PROGMEM fn_actions_3[] = {
@@ -402,6 +408,36 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                 return MACRO(T(NUHS), T(NUHS), T(LEFT), END);
             case M_DOLLAR:
                 return MACRO(D(RALT), T(4), U(RALT), END);
+            case M_SHRUG:
+                return MACRO(
+                    D(LSHIFT),
+                        D(LCTRL),
+                            T(U), T(A), T(F),
+                        U(LCTRL),
+                    U(LSHIFT),
+                    T(EQL),
+                    D(LSHIFT),
+                        T(SLASH),
+                        T(8),
+                        D(LCTRL),
+                            T(U), T(3), T(0), T(C), T(4),
+                        U(LCTRL),
+                        T(9),
+                        T(SLASH),
+                        T(7),
+                        D(LCTRL),
+                            T(U), T(A), T(F),
+                        U(LCTRL),
+                    U(LSHIFT),
+                    END
+                );
+            case M_LOOK_OF_DISAPPROVAL:
+                return MACRO(
+                    D(LCTRL), D(LSHIFT), T(U), T(0), T(C), T(A), T(0), U(LCTRL),
+                    T(SLASH),
+                    D(LCTRL), T(U), T(0), T(C), T(A), T(0), U(LSHIFT), U(LCTRL),
+                    END
+                );
         }
     }
     return MACRO_NONE;
