@@ -183,7 +183,7 @@ enum function_id {
 };
 
 enum macro_id {
-    M_PHP_FULL_TAG,
+    M_PHP_SHORT,
     M_PHP_SHORT_ECHO,
     M_LANGUAGE_FUNC,
     M_JQUERY_SELECTOR,
@@ -230,7 +230,7 @@ static const uint16_t PROGMEM fn_actions[] = {
 static const uint16_t PROGMEM fn_actions_2[] = {
     [0] =   ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN0  = Shift + , = ;
 
-    [1] =   ACTION_MACRO(M_PHP_FULL_TAG),                   // FN1  = Type out "<?php ?>" and two left arrows
+    [1] =   ACTION_MACRO(M_PHP_SHORT),                      // FN1  = Type out "<?  ?>" and three left arrows
     [2] =   ACTION_MACRO(M_PHP_SHORT_ECHO),                 // FN2  = Type out "<?=?>" and two left arrows
     [3] =   ACTION_MACRO(M_LANGUAGE_FUNC),                  // FN3  = Type out "L()", a left arrow and then "_" => "L(_)"
     [4] =   ACTION_MACRO(M_JQUERY_SELECTOR),                // FN4  = Type out "$('')" and two left arrows
@@ -341,10 +341,10 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     if (record->event.pressed) {
         switch (id) {
-            case M_PHP_FULL_TAG:
+            case M_PHP_SHORT:
                 return MACRO(
-                    T(NUBS), D(LSHIFT), T(MINS), U(LSHIFT), T(P), T(H), T(P), T(SPC),
-                    D(LSHIFT), T(MINS), T(NUBS), U(LSHIFT), T(LEFT), T(LEFT), END
+                    T(NUBS), D(LSHIFT), T(MINS), U(LSHIFT), T(SPC), T(SPC),
+                    D(LSHIFT), T(MINS), T(NUBS), U(LSHIFT), T(LEFT), T(LEFT), T(LEFT), END
                 );
             case M_PHP_SHORT_ECHO:
                 return MACRO(
