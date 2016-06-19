@@ -7,12 +7,14 @@ cd "$(dirname "$0")"
 if [[ ! -e "tmk_keyboard" ]]; then
     echo " * Cloning TMK keyboard firmware (from cub-uanic)"
     git clone --quiet https://github.com/cub-uanic/tmk_keyboard.git
+    cd tmk_keyboard
+    git checkout -b olemartinorg a620448e7bfb1a5ec75b69c0dadb81444aa51c2e
 
     echo " * Patching in references to our keymap"
-    echo "olemartinorg: OPT_DEFS += -DKEYMAP_OLEMARTINORG" >> tmk_keyboard/keyboard/ergodox/Makefile.lufa
-    echo "olemartinorg: all" >> tmk_keyboard/keyboard/ergodox/Makefile.lufa
+    echo "olemartinorg: OPT_DEFS += -DKEYMAP_OLEMARTINORG" >> keyboard/ergodox/Makefile.lufa
+    echo "olemartinorg: all" >> keyboard/ergodox/Makefile.lufa
 
-    cd tmk_keyboard/keyboard/ergodox
+    cd keyboard/ergodox
     ln -s ../../../src/keymap_olemartinorg.h keymap_olemartinorg.h
     echo " * Patching keymap.c"
     patch --quiet keymap.c < ../../../src/keymap.c.diff
@@ -21,7 +23,7 @@ if [[ ! -e "tmk_keyboard" ]]; then
     echo " * Patching config.h"
     patch --quiet config.h < ../../../src/config.h.diff
 
-    cd ../../
+    cd ../..
     echo " * [Recorder] Patching common.mk"
     patch --quiet common.mk < ../src/recorder/common.mk.diff
     cd common
