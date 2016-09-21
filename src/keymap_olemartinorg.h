@@ -14,7 +14,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               TAB,Y,   U,   I,   O,   P,LBRC,
                   H,   J,   K,   L,SCLN,QUOT,
              BSPC,N,   M,COMM, DOT,SLSH,RCTL,
-                    FN26,  NO,MINS, EQL,RBRC,
+                    FN26,FN25,MINS, EQL,RBRC,
          FN1,  NO,
          INS,
         RALT, ENT, SPC
@@ -147,6 +147,48 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
+    KEYMAP(  // Layer7: Red Alert 3 (control everything with left hand)
+        // left hand
+        TRNS,   1,   2,   3,   4,   5, ESC,
+         TAB,   Q,   W,   E,   R,   T, TAB,
+        LSFT,   A,   S,   D,   F,   G,
+        LCTL,   Z,   X,   C,   V,   B, DEL,
+        FN30,FN31,  NO,  NO, FN0,
+                                      HOME, END,
+                                           PGUP,
+                                  SPC, FN0,PGDN,
+        // right hand
+             FN28,6,   7,   8,   9,   0,NUHS,
+              TAB,Y,   U,   I,   O,   P,LBRC,
+                  H,   J,   K,   L,SCLN,QUOT,
+             BSPC,N,   M,COMM, DOT,SLSH,RCTL,
+                    FN26,FN25,MINS, EQL,RBRC,
+         FN1,  NO,
+         INS,
+        RALT, ENT, SPC
+    ),
+
+    KEYMAP(  // Layer8: Red Alert 3 (control everything with left hand)
+        // left hand
+           E,   R,   T,   Y,   U,   I,TRNS,
+        TRNS,  F1,  F2,  F3,TRNS,TRNS,TRNS,
+        TRNS,  F4,  F5,  F6,TRNS,TRNS,
+        TRNS,  F7,  F8,  F9,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,
+                                      TRNS,TRNS,
+                                           TRNS,
+                                 TRNS,TRNS,TRNS,
+        // right hand
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                       TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,
+        TRNS,
+        TRNS,TRNS,TRNS
+    ),
+
 /*
     // template to copy from
 
@@ -219,8 +261,9 @@ static const uint16_t PROGMEM fn_actions[] = {
     [1] =   ACTION_MODS_KEY(MOD_RALT, KC_2),                // FN5  = AltGr + 2 = @
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
-    [26] =  ACTION_LAYER_MOMENTARY(6),                      // FN25 = Hold to use layer 6
-    [27] =  ACTION_LAYER_MOMENTARY(5),                      // FN26 = Hold to use layer 5
+    [25] =  ACTION_LAYER_TOGGLE(7),                         // FN25 = Tap to toggle on/off Red Alert 3 layout
+    [26] =  ACTION_LAYER_MOMENTARY(6),                      // FN26 = Hold to use layer 6
+    [27] =  ACTION_LAYER_MOMENTARY(5),                      // FN27 = Hold to use layer 5
     [28] =  ACTION_LAYER_TOGGLE(1),                         // FN28 = Tap to toggle on/off colemak/tarmak
     [29] =  ACTION_LAYER_MOMENTARY(2),                      // FN29 = Hold to use layer 2
     [30] =  ACTION_LAYER_MOMENTARY(3),                      // FN30 = Hold to use layer 3
@@ -285,6 +328,10 @@ static const uint16_t PROGMEM fn_actions_6[] = {
     [1] =  ACTION_FUNCTION(F_PARENS),                       // FN1 = Prints out ( and )
     [2] =  ACTION_FUNCTION(F_BRACKETS),                     // FN2 = Prints out [ and ]
     [3] =  ACTION_FUNCTION(F_BRACES),                       // FN3 = Prints out { and }
+};
+
+static const uint16_t PROGMEM fn_actions_7[] = {
+    [0] =  ACTION_LAYER_MOMENTARY(8),                       // FN0 = Hold to use layer 8 (alternative keys)
 };
 
 void action_function_custom(keyrecord_t *record, uint8_t key, uint8_t weak_mod,
@@ -448,6 +495,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 #define FN_ACTIONS_3_SIZE (sizeof(fn_actions_3) / sizeof(fn_actions_3[0]))
 #define FN_ACTIONS_5_SIZE (sizeof(fn_actions_5) / sizeof(fn_actions_5[0]))
 #define FN_ACTIONS_6_SIZE (sizeof(fn_actions_6) / sizeof(fn_actions_6[0]))
+#define FN_ACTIONS_7_SIZE (sizeof(fn_actions_7) / sizeof(fn_actions_7[0]))
 
 /*
 * translates Fn keycode to action
@@ -459,6 +507,9 @@ action_t keymap_fn_to_action(uint8_t keycode)
     action_t action;
     action.code = ACTION_NO;
 
+    if ((layer == 7 || layer == 8) && FN_INDEX(keycode) < FN_ACTIONS_7_SIZE) {
+        action.code = pgm_read_word(&fn_actions_7[FN_INDEX(keycode)]);
+    }
     if (layer == 6 && FN_INDEX(keycode) < FN_ACTIONS_6_SIZE) {
         action.code = pgm_read_word(&fn_actions_6[FN_INDEX(keycode)]);
     }
