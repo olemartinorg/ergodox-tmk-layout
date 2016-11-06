@@ -228,7 +228,7 @@ enum macro_id {
     M_PHP_SHORT,
     M_PHP_SHORT_ECHO,
     M_LANGUAGE_FUNC,
-    M_JQUERY_SELECTOR,
+    M_ARROW_FUNC,
     M_CLOSURE,
     M_EMAIL_DOMAIN,
     M_USERNAME,
@@ -276,7 +276,7 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [1] =   ACTION_MACRO(M_PHP_SHORT),                      // FN1  = Type out "<?  ?>" and three left arrows
     [2] =   ACTION_MACRO(M_PHP_SHORT_ECHO),                 // FN2  = Type out "<?=?>" and two left arrows
     [3] =   ACTION_MACRO(M_LANGUAGE_FUNC),                  // FN3  = Type out "L()", a left arrow and then "_" => "L(_)"
-    [4] =   ACTION_MACRO(M_JQUERY_SELECTOR),                // FN4  = Type out "$('')" and two left arrows
+    [4] =   ACTION_MACRO(M_ARROW_FUNC),                     // FN4  = Type out "() => {}" and one left arrow
     [5] =   ACTION_MACRO(M_CLOSURE),                        // FN5  = Type out "function() {}" and then a left arrow
 
     [6] =   ACTION_MACRO(M_EMAIL_DOMAIN),                   // FN6  = Type out "@olemartin.org"
@@ -403,10 +403,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                     D(LSHIFT), T(L), T(8), T(9), U(LSHIFT), T(LEFT), D(LSHIFT),
                     T(SLSH), U(LSHIFT), END
                 );
-            case M_JQUERY_SELECTOR:
+            case M_ARROW_FUNC:
                 return MACRO(
-                    D(RALT), T(4), U(RALT), D(LSHIFT), T(8), U(LSHIFT), T(NUHS),
-                    T(NUHS), D(LSHIFT), T(9), U(LSHIFT), T(LEFT), T(LEFT), END
+                    D(LSHIFT), T(8), T(9), T(SPC), T(0), T(NUBS), T(SPC),
+                    U(LSHIFT), D(RALT), T(7), T(0), U(RALT), T(LEFT), END
                 );
             case M_CLOSURE:
                 return MACRO(
