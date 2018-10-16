@@ -11,7 +11,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LALT,   Q,   W,   E,   R,   T, TAB,
         LCTL,   A,   S,   D,   F,   G,
         LSFT,   Z,   X,   C,   V,   B, DEL,
-        FN30,FN31,  NO,  NO,FN27,
+        FN30,FN31,  NO,FN24,FN27,
                                       HOME, END,
                                            PGUP,
                                 FN29, LGUI,PGDN,
@@ -51,7 +51,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer2: F-keys, arrows, media buttons
         // left hand
         TRNS,  F1,  F2,  F3,  F4,  F5, F11,
-        FN14,MPRV,MPLY,MNXT,FN12,TRNS,TRNS,
+        TRNS,MPRV,MPLY,MNXT,FN12,TRNS,TRNS,
         TRNS, FN0, FN9, FN7,FN10,FN11,
         TRNS, FN1, FN2, FN3, FN4, FN5, FN8,
         TRNS,TRNS,TRNS,NUBS,FN13,
@@ -253,7 +253,7 @@ enum macro_id {
     M_SNG_QUOTES,
     M_DOLLAR,
     M_TYPE_HINT,
-    M_ANDRE_3000,
+    M_ACCENTED_E,
 
     M_SHRUG,
     M_LOOK_OF_DISAPPROVAL,
@@ -270,6 +270,7 @@ static const uint16_t PROGMEM fn_actions[] = {
     [2] =   ACTION_FUNCTION(F_TERRARIA_FISHING_HACK),       // FN2  = Auto-fish with many lines hack for the Terraria game
 
     // Counting downwards from 31: Actions that are needed on all layers (or more than just on layer 0)
+    [24] =  ACTION_MACRO(M_ACCENTED_E),                     // FN24 = Type 'é'
     [25] =  ACTION_LAYER_TOGGLE(7),                         // FN25 = Tap to toggle on/off Red Alert 3 layout
     [26] =  ACTION_LAYER_MOMENTARY(6),                      // FN26 = Hold to use layer 6
     [27] =  ACTION_LAYER_MOMENTARY(5),                      // FN27 = Hold to use layer 5
@@ -299,7 +300,6 @@ static const uint16_t PROGMEM fn_actions_2[] = {
     [12] =  ACTION_MACRO(M_DOLLAR),                         // FN12 = Type out "$"
 
     [13] =  ACTION_MACRO(M_TYPE_HINT),                      // FN13 = Type out "/* @var  */" and press 3x left
-    [14] =  ACTION_MACRO(M_ANDRE_3000),                     // FN14 = Type 'André'
 
     [30] =  ACTION_MACRO(M_LOOK_OF_DISAPPROVAL),            // FN30 = Type out ಠ_ಠ
     [31] =  ACTION_MACRO(M_SHRUG),                          // FN31 = Type out ¯\_(ツ)_/¯
@@ -489,9 +489,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
                     T(V), T(A), T(R), T(SPC), T(SPC), D(LSHIFT), T(NUHS), T(7), U(LSHIFT),
                     T(LEFT), T(LEFT), T(LEFT), END
                 );
-            case M_ANDRE_3000:
+            case M_ACCENTED_E:
                 return MACRO(
-                    D(LSHIFT), T(A), U(LSHIFT), T(N), T(D), T(R),
                     D(LCTRL), D(LSHIFT), T(U), U(LCTRL), U(LSHIFT), T(E), T(9), T(SPC), END
                 );
             case M_EMAIL_DOMAIN:
