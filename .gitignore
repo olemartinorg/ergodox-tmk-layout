@@ -3,3 +3,4 @@ ergodox_*.hex
 tmk_keyboard
 teensy_loader_cli
 hid_listen
+.idea
