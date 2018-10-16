@@ -9,6 +9,7 @@ if [[ ! -e "tmk_keyboard" ]]; then
     git clone --quiet https://github.com/cub-uanic/tmk_keyboard.git
     cd tmk_keyboard
     git checkout -b olemartinorg a620448e7bfb1a5ec75b69c0dadb81444aa51c2e
+    rm -rf .git
 
     echo " * Patching in references to our keymap"
     echo "olemartinorg: OPT_DEFS += -DKEYMAP_OLEMARTINORG" >> keyboard/ergodox/Makefile.lufa
